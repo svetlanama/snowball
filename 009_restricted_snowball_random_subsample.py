@@ -119,32 +119,32 @@ def main():
     config.readfp(open('config.ini'))
     
     dataDir = config.get('main', 'dataDir')
-    nSubsamplePercentage = config.getfloat('main', 'nSubsamplePercentage')
+    #nSubsamplePercentage = config.getfloat('main', 'nSubsamplePercentage')
     maxDistance = config.getfloat('main', 'maxDistance')
 
     subscriptionKey = config.get('main', 'subscriptionKey');
 
     api = ad.Api(subscriptionKey)
 
-    maExcludeTopicsFile = dataDir + "/in-academic-exclude-topics.txt"
+    maExcludeTopicsFile = dataDir + "/in-exclude-topics.txt"
     msAcademicExcludeTopicsIds = set(api.loadList(maExcludeTopicsFile));
 
-    maIncludeTopicsFile = dataDir + "/in-academic-include-topics.txt"
+    maIncludeTopicsFile = dataDir + "/in-include-topics.txt"
     msAcademicIncludeTopicsIds = api.loadList(maIncludeTopicsFile)
 
-    maQueueSizeFile = dataDir + "/ms-academic-queue-size.txt"
-    maInvalidFile = dataDir + "/ms-academic-invalid.csv"
+    maQueueSizeFile = dataDir + "/out-queue-size.txt"
+    maInvalidFile = dataDir + "/out-invalid.csv"
 
     regex = re.compile(r"^\d+@", re.IGNORECASE)
 
     io = topicmodel.io(dataDir)
     
     # read wordDictionary
-    wordDictionary = io.load_csv_as_dict('wordDictionaryReduced.csv')
+    wordDictionary = io.load_csv_as_dict('out-word-dictionary-reduced.csv')
 
-    wwcovarReduced = numpy.load(dataDir + '/wwcovarReduced.npy')
+    wwcovarReduced = numpy.load(dataDir + '/tmp-joint-probability-reduced.npy')
     
-    topicModel = numpy.load(dataDir + '/TopicModel.npy')
+    topicModel = numpy.load(dataDir + '/out-TopicModel.npy')
     topicModel = topicModel.item()
 
     model = topicmodel.model(dataDir)
@@ -175,7 +175,7 @@ def main():
     apiCallCounter=0
 
     # file to write citaton network
-    csvOutputFile = open(dataDir + '/citation-network.csv', 'w')
+    csvOutputFile = open(dataDir + '/out-citation-network.csv', 'w')
     fieldnames = ['entryId','dist','url','ECC','year','text','keywords','referencesTo','tokens','referencedBy','topics']
     writer = csv.DictWriter(csvOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='',escapechar="\\", quoting=csv.QUOTE_NONE)
     writer.writeheader()
@@ -186,7 +186,7 @@ def main():
     # ms-academic-entries-0.csv
     # load all the entries into fullDictionary and into seedIds
     #     entryId : [entryId: , url: , text:"..." , tokens:[], referencesTo:[...]  referencedBy:[...] , topics:[]]
-    csvInputFile = open(dataDir + '/in-academic-seed.csv', 'r')
+    csvInputFile = open(dataDir + '/in-seed.csv', 'r')
     csvreader = csv.reader(csvInputFile, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
 
     random.seed()
