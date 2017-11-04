@@ -5,7 +5,7 @@ Application of controlled/restricted snowball sampling to collection of the scie
 Quick start:
 0) you need NLTK and numpy to run the scripts below.
 1) get MS Academic API key ( https://azure.microsoft.com/en-us/services/cognitive-services/academic-knowledge/ )
-2) update config.ini
+2) copy config-sample.ini to config.ini and update config.ini
 3) set desired MS Academic topics in the file data/in-include-topics.txt
 4) set undesired MS Academic topics in the file data/in-exclude-topics.txt
 5) paste MS Academic Ids into data/in-seed.csv , one ID per row
