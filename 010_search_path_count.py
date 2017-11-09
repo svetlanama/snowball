@@ -135,7 +135,7 @@ def main():
             node_ids.append(n)
         except ValueError:
             "NaN"
-    selected_nodes=pd.DataFrame(pd.Series(node_ids),columns=['entryId'])
+    selected_nodes=pd.DataFrame(pd.Series(node_ids).unique(),columns=['entryId'])
     #print selected_nodes
     
     snds=pd.merge(dfn0[['entryId','dist','year','url','text']], selected_nodes, how='inner', left_on='entryId', right_on='entryId' )
