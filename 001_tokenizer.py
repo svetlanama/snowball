@@ -11,6 +11,7 @@ import time
 import re
 from nltk.stem.porter import *
 from nltk.corpus import stopwords
+import json
 
 import topicmodel
 
@@ -27,9 +28,11 @@ def main():
     csvInputFileList = [
         dataDir+'/out-entries-0.csv',
         dataDir+'/out-entries-1.csv',
-        dataDir+'/out-entries-2.csv'
-        # , # dataDir+'/ms-academic-entries-3.csv'
+        dataDir+'/out-entries-2.csv',
+        dataDir+'/out-entries-3.csv'
     ]
+    
+    io = topicmodel.io(dataDir)
     
     # read and tokenize seed entities
     # read and tokenize 1-st level entities
@@ -57,19 +60,30 @@ def main():
     
     cnt=0
 
+    csvSeedOutputFile = open(dataDir+'/tmp-seed-paper-tokens.csv', 'w')
+    fieldnames = ['id', 'tokens']
+    seed_writer = csv.DictWriter(csvSeedOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
+    seed_writer.writeheader()
+
+    csvOutputFile = open(dataDir+'/tmp-all-paper-tokens.csv', 'w')
+    fieldnames = ['id', 'tokens']
+    writer = csv.DictWriter(csvOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
+    writer.writeheader()
+
     for i in xrange(0, len(csvInputFileList)):
 
 
         path =csvInputFileList[i]
+        print ("path", path)
         csvInputFile = open(path, 'r')
         csvreader = csv.reader(csvInputFile, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
         for dat in csvreader:
             # paper Id
             try:
-                print dat[0]
+                _tmp=dat[0]
             except IndexError:
                 continue
-
+            
             paper_tokens = []
 
             # keywords
@@ -107,38 +121,26 @@ def main():
 
             # print dat[0], words
             cnt = cnt + 1
-            print i, cnt, tk
+            if cnt%1000 == 0:
+                print i, cnt, tk
 
-            all_tokens.append(tk)
+            #all_tokens.append(tk)
+            writer.writerow(tk)
 
             if i==0:
-                seed_tokens.append(tk)
+                # seed_tokens.append(tk)
+                seed_writer.writerow(tk)
 
         print tokenizer.wordDictionary
         csvInputFile.close();
+        
+        io.save_dict_as_csv('out-word-dictionary.csv', tokenizer.wordDictionary)
 
-        
-        
-        
-    csvOutputFile = open(dataDir+'/tmp-seed-paper-tokens.csv', 'w')
-    fieldnames = ['id', 'tokens']
-    writer = csv.DictWriter(csvOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
-    writer.writeheader()
-    for tk in seed_tokens:
-        writer.writerow(tk)
+    csvSeedOutputFile.close();
     csvOutputFile.close();
 
-
-    csvOutputFile = open(dataDir+'/tmp-all-paper-tokens.csv', 'w')
-    fieldnames = ['id', 'tokens']
-    writer = csv.DictWriter(csvOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
-    writer.writeheader()
-    for tk in all_tokens:
-        writer.writerow(tk)
-    csvOutputFile.close();
-
-    io = topicmodel.io(dataDir)
-    io.save_dict_as_csv('out-word-dictionary.csv', tokenizer.wordDictionary)
+    
+    
     
     print len(tokenizer.wordDictionary)," words"
 

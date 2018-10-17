@@ -21,7 +21,7 @@ class CustomTokenizer:
         self.stop = set([])
 
     def tokens(self, string):
-        print string
+        # print string
         text = nltk.word_tokenize(string)
         taggedWords = nltk.pos_tag(text)
         words = []

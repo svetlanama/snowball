@@ -58,8 +58,8 @@ def skl_divergence(v1, v2):
 
 
 # difference=kl_divergence # run 1
-# difference=skl_divergence # run 2
-difference=js_divergence # run 3
+difference=skl_divergence # run 2
+# difference=js_divergence # run 3
 
 '''
 
@@ -122,22 +122,28 @@ class LocalTokenizer:
             text = nltk.word_tokenize(unicode(string, errors='ignore'))
             
         taggedWords = nltk.pos_tag(text)
-        words = []
+        tokens = []
+        stopwords=[]
+        unknownwords=[]
         for tw in taggedWords:
             #print tw
             if(self.validPOSTags.has_key(tw[1])):
                 theWord = tw[0].lower()
                 # print theWord, tester.match(theWord)
 
-                if (self.tester.match(theWord) and theWord not in self.stop):
-                    try:
+                try:
+                    if(self.tester.match(theWord)):
                         theWord = self.stemmer.stem(tw[0].lower()).encode('utf-8')
-                    except IndexError:
-                        continue
+                    if self.wordDictionary.has_key(theWord) :
+                        tokens.append(theWord)
+                    elif theWord in self.stop:
+                        stopwords.append(theWord)
+                    else:
+                        unknownwords.append(theWord)
+                except IndexError:
+                    continue
 
-                    if(self.wordDictionary.has_key(theWord)):
-                        words.append(theWord)
-        return words
+        return (tokens, stopwords, unknownwords)
 '''
 
 
@@ -275,7 +281,8 @@ def main():
                 # paper text
                 # words=unicode(p.entryTitle + ". "+ p.entryAbstract, errors='ignore')
                 words=p.entryTitle.encode("utf-8") + ". "+ p.entryAbstract.encode("utf-8")
-                for tk in tokenizer.tokens(words):
+                _tokens, _stopwords, _unknownwords = tokenizer.tokens(words)
+                for tk in _tokens:
                     tokens.append(tk)
                 # ----- tokenize - end -------------------------------------
 
@@ -374,7 +381,8 @@ def main():
 
                         # paper text
                         words=p.entryTitle.encode("utf-8") + ". "+ p.entryAbstract.encode("utf-8")
-                        [tokens.append(tk) for tk in tokenizer.tokens(words)]
+                        _tokens, _stopwords, _unknownwords = tokenizer.tokens(words)
+                        [tokens.append(tk) for tk in _tokens]
                         # ----- tokenize - end -------------------------------------
 
                         # apply topic model

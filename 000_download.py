@@ -8,7 +8,7 @@ import ConfigParser
 import csv
 import time
 import academicdownload as ad
-
+import json
 
 def main():
     
@@ -17,6 +17,8 @@ def main():
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
+    
+    restEndpoint=json.loads(config.get('main', 'restEndpoint'))
     
     dataDir = config.get('main', 'dataDir')    
     subscriptionKey = config.get('main', 'subscriptionKey');
@@ -49,10 +51,9 @@ def main():
     ###############################################
     # download
     
-    for i in xrange(0,3):
+    for i in xrange(0,4):
         print "Level ", i
-        ad.downloadLevel(dataDir, subscriptionKey, i, filenames)
-    
+        ad.downloadLevel(dataDir, subscriptionKey, i, filenames, restEndpoint,verbose=False)
 
 
 if __name__ == "__main__":

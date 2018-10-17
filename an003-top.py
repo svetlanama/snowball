@@ -12,13 +12,13 @@ import time
 
 def main():
 
-    
+
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
     
     dataDir = config.get('main', 'dataDir')   
-    #dataDir = './data'
+    dataDir = './data-pronunciation-2'
     n_top_paths = config.getint('main', 'n_top_paths');
     
     min_in_degree = config.getint('main', 'min_in_degree');
@@ -26,108 +26,70 @@ def main():
     
     
     dfn0 = pd.read_csv(dataDir + '/out-citation-network.csv', sep="\t")
-    #print dfn0[['entryId','dist','year','url','text']].head()
+    #print dfn0[['entryId','dist','ECC','year','url','text']].head()
+    #print dfn0.columns
+    #return
 
     dfn = dfn0[['entryId', 'referencedBy', 'referencesTo']]
     
     entries = list(dfn['entryId'])
-    #print type(entries[0])
+    # print entries
+    # return
     
-    citation_net = nx.DiGraph()
-    
-    for i in dfn.index:
-        row = dfn.loc[i]
-        node_1 = row.loc['entryId']
-        if pd.notnull(row.loc['referencedBy']):
-            refs = row.loc['referencedBy'].split(';')
-            for ref in refs:
-                node_2 = int(ref)
-                if node_2 in entries:
-                    #print (node_1, node_2)
-                    citation_net.add_edge(node_2, node_1)
-        if pd.notnull(row.loc['referencesTo']):
-            refs = row.loc['referencesTo'].split(';')
-            for ref in refs:
-                node_2 = int(ref)
-                if node_2 in entries:
-                    #print (node_1, node_2)
-                    citation_net.add_edge(node_1, node_2)
+    citation_net = nx.read_edgelist(dataDir + "/tmp-citation-network.edgelist", create_using=nx.DiGraph())
+    # print len(citation_net.nodes())
 
-        # print i,node_1
-    print len(citation_net.nodes())
-    nx.write_edgelist(citation_net, dataDir + "/tmp-citation-network.edgelist")
+
+    # network is created
 
     t0 = time.time()
     
-    
-    
-    
-    
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
-    # remove cycles
-    cycles = list(nx.simple_cycles(citation_net))
-    for c in cycles:
-        #print 'cycle=',c
-        copies=[]
-        for nd in c:
-            # transform network
-            # duplicate every node in the cycle
-            nd2=str(nd)+'.v2'
-            copies.append(nd2)
-            citation_net.add_node(nd2)
-
-        
-        for nd in c:
-            # transform network
-            # duplicate every node in the cycle
-            nd2=str(nd)+'.v2'
-            #print nd2
-            # print nd2
-        
-            # duplicate edges
-
-            # duplicate all incoming edges
-            out_edges = citation_net.in_edges(nbunch=[nd])
-            for in_edge in out_edges:
-                #print "in_edge", in_edge
-                if str(in_edge[0])+'.v2' not in copies:
-                    #print "in_edge2", in_edge
-                    citation_net.add_edge(in_edge[0], nd2)
-
-
-            # duplicate outcoming edges
-            in_edges = citation_net.out_edges(nbunch=[nd])
-            for out_edge in in_edges:
-                #print "out_edge", out_edge
-                if out_edge[1] not in c and str(in_edge[1])+'.v2' not in copies:
-                    #print "out_edge 2", out_edge
-                    citation_net.add_edge(nd2, in_edge[1])
-
-            citation_net.add_edge(nd, nd2)
-        
-        # remove edges inside cycle
-        for nd1 in c:
-            for nd2 in c:
-                if citation_net.has_edge(nd1, nd2):
-                    citation_net.remove_edge(nd1, nd2)
-                    citation_net.add_edge(nd1, str(nd2)+'.v2')
-
-                if citation_net.has_edge(nd2, nd1):
-                    citation_net.remove_edge(nd2, nd1)
-                    citation_net.add_edge(nd2, str(nd1)+'.v2')
-
-        #cycles2 = list(nx.simple_cycles(citation_net))
-        #print cycles2
-        #return
-                
-        # add edge from node to duplicate
-        # replace outgoing edges
-            
-    #cycles2 = list(nx.simple_cycles(citation_net))
-    #print cycles2
-    print("decycled network is connected = ", nx.is_connected(citation_net.to_undirected()))
-    #return
     
+    
+    
+    
+    
+    
+    
+    
+    
+    # get PageRank of nodes
+    pr = nx.pagerank(citation_net, alpha=0.9)
+    ids=dfn0['entryId']
+    pageRanks=[]
+    for i in ids:
+        k=str(i)
+        if k in pr:
+            pageRanks.append(pr[k])
+        else:
+            pageRanks.append(0)
+    dfn0['PageRank']=pageRanks
+    # print dfn0[['entryId','PageRank']].head()
+    
+
+    
+    
+    
+    
+    # in-degrees of nodes
+    in_degrees=[]
+    ids=dfn0['entryId']
+    for i in ids:
+        k=str(i)
+        in_degrees.append(citation_net.in_degree(k))
+    dfn0['inDegree']=in_degrees
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # SPC
     s_nodes = list(citation_net.nodes())
     for nd in list(s_nodes):
         # print "node ", nd
@@ -147,7 +109,8 @@ def main():
     
     cycles = list(nx.simple_cycles(citation_net))
     print " number of cycles=", len(cycles)
-    #return
+    print " n nodes=", len(s_nodes)
+    
     
     # get list of all nodes
     n_minus = {}
@@ -215,7 +178,56 @@ def main():
         edge_weights.append( evg  )
     
     sorted_edge_weights=sorted(edge_weights,cmp=lambda x,y: y[2]-x[2])
-    #print edge_weights
+    print "edge_weights=", edge_weights
+
+
+    # node weights
+    node_weights={}
+    for nd in citation_net.nodes():
+        node_weights[nd] = -1
+    
+    for evg in edge_weights:
+        node_weights[evg[0]]=max(node_weights[evg[0]], evg[2] )
+        node_weights[evg[1]]=max(node_weights[evg[1]], evg[2] )
+    
+    
+    ids=dfn0['entryId']
+    wgts=[]
+    for i in ids:
+        k=str(i)
+        if k in node_weights:
+            wgts.append(node_weights[k])
+        else:
+            wgts.append(0)
+    dfn0['SPC']=wgts
+    
+    dfn0['abs_dist']=dfn0['dist'].map(abs)
+    
+    
+    # print dfn0.head()
+    dfn0.to_csv(dataDir + '/out-citation-network-extended.csv')
+    
+    
+    
+    
+    
+    print "\n\n\n============== Top by ECC ============"
+    dfn0[["entryId","abs_dist","ECC","PageRank","SPC","inDegree","year","text"]].sort_values(by=['ECC'],ascending=False).head(20).to_csv(dataDir + '/out-top20-by-ECC.csv')
+
+
+    print "\n\n\n============== Top by SPC ============"
+    dfn0[["entryId","abs_dist","ECC","PageRank","SPC","inDegree","year","text"]].sort_values(by=['SPC'],ascending=False).head(20).to_csv(dataDir + '/out-top20-by-SPC.csv')
+
+
+    print "\n\n\n============== Top by abs_dist ============"
+    dfn0[["entryId","abs_dist","ECC","PageRank","SPC","inDegree","year","text"]].sort_values(by=['abs_dist'],ascending=True).head(20).to_csv(dataDir + '/out-top20-by-abs_dist.csv')
+
+
+    print "\n\n\n============== Top by inDegree ============"
+    dfn0[["entryId","abs_dist","ECC","PageRank","SPC","inDegree","year","text"]].sort_values(by=['inDegree'],ascending=False).head(20).to_csv(dataDir + '/out-top20-by-in_degree.csv')
+
+    return
+    
     
     wmin=sorted_edge_weights[n_top_paths][2]
     selected_edges = [ ed for ed in sorted_edge_weights if ed[2]>= wmin]

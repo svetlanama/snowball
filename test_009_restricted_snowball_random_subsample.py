@@ -18,49 +18,18 @@ import topicmodel
 from nltk.corpus import stopwords
 import academicdownload as ad
 import Queue
-import json
  
 
 # map documents to topic using the topic model
 
-# The Jensen–Shannon divergence (JSD) M + 1 ( A ) × M + 1 ( A ) → [ 0 , ∞ ) {\displaystyle M_{+}^{1}(A)\times M_{+}^{1}(A)\rightarrow [0,\infty {})} M_{+}^{1}(A)\times M_{+}^{1}(A)\rightarrow [0,\infty {}) is a symmetrized and smoothed version of the Kullback–Leibler divergence D ( P ∥ Q ) {\displaystyle D(P\parallel Q)} D(P\parallel Q). It is defined by
-# J S D ( P ∥ Q ) = 1 2 D ( P ∥ M ) + 1 2 D ( Q ∥ M ) {\displaystyle {\rm {JSD}}(P\parallel Q)={\frac {1}{2}}D(P\parallel M)+{\frac {1}{2}}D(Q\parallel M)} {{\rm {JSD}}}(P\parallel Q)={\frac {1}{2}}D(P\parallel M)+{\frac {1}{2}}D(Q\parallel M)
-# where M = 1 2 ( P + Q ) {\displaystyle M={\frac {1}{2}}(P+Q)} M={\frac {1}{2}}(P+Q) 
-def js_divergence(v1, v2):
-    # symmetric KL - divergence
-    v0=[ 0.5*(v1[i]+v2[i]) for  i in xrange(0, len(v1))]
-    s = 0
-    for i in xrange(0, len(v1)):
-        s = s + (v1[i] + 0.000000000001) * numpy.log( ( v1[i] + 0.000001) / ( v0[i] + 0.000001 ) )
-        # abs(v1[i]-v2[i])
-    for i in xrange(0, len(v1)):
-        s = s + (v2[i] + 0.000000000001) * numpy.log( ( v2[i] + 0.000001) / ( v0[i] + 0.000001 ) )
-    return s*0.5
 
-# simple KL - divergence
-def kl_divergence(v1, v2):
-    
+def difference(v1, v2):
+    # KL - divergence
     s = 0
     for i in xrange(0, len(v1)):
-        s = s + (v1[i] + 0.000000000001) * numpy.log( ( v1[i] + 0.000001) / ( v2[i] + 0.000001 ) )
+        s = s + (v1[i] + 0.000000000001) * numpy.log(( v1[i]+0.000000000001)/( v2[i]+0.000000000001 ) )
+        # abs(v1[i]-v2[i])
     return s
-
-# symmetric KL - divergence
-def skl_divergence(v1, v2):
-    
-    s = 0
-    for i in xrange(0, len(v1)):
-        s = s + (v1[i] + 0.000000000001) * numpy.log( ( v1[i] + 0.000001) / ( v2[i] + 0.000001 ) )
-        # abs(v1[i]-v2[i])
-    for i in xrange(0, len(v1)):
-        s = s + (v2[i] + 0.000000000001) * numpy.log( ( v2[i] + 0.000001) / ( v1[i] + 0.000001 ) )
-    return s*0.5
-
-
-# difference=kl_divergence # run 1
-# difference=skl_divergence # run 2
-difference=js_divergence # run 3
-
 '''
 
 
@@ -149,17 +118,13 @@ def main():
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
     
-    restEndpoint=json.loads(config.get('main', 'restEndpoint'))
-    
     dataDir = config.get('main', 'dataDir')
+    #nSubsamplePercentage = config.getfloat('main', 'nSubsamplePercentage')
     maxDistance = config.getfloat('main', 'maxDistance')
+
     subscriptionKey = config.get('main', 'subscriptionKey');
-    subsampleFraction = config.getfloat('main', 'subsampleFraction')
 
-
-    logFile=dataDir + "/out-snowball.log"
-
-    api = ad.Api(subscriptionKey, restEndpoint)
+    api = ad.Api(subscriptionKey)
 
     maExcludeTopicsFile = dataDir + "/in-exclude-topics.txt"
     msAcademicExcludeTopicsIds = set(api.loadList(maExcludeTopicsFile));
@@ -167,10 +132,10 @@ def main():
     maIncludeTopicsFile = dataDir + "/in-include-topics.txt"
     msAcademicIncludeTopicsIds = api.loadList(maIncludeTopicsFile)
 
-    #maQueueSizeFile = dataDir + "/out-queue-size.txt"
-    #maInvalidFile = dataDir + "/out-invalid.csv"
+    maQueueSizeFile = dataDir + "/out-queue-size.txt"
+    maInvalidFile = dataDir + "/out-invalid.csv"
 
-    #regex = re.compile(r"^\d+@", re.IGNORECASE)
+    regex = re.compile(r"^\d+@", re.IGNORECASE)
 
     io = topicmodel.io(dataDir)
     
@@ -226,15 +191,15 @@ def main():
 
     random.seed()
     for dat in csvreader:
-        if random.random() < subsampleFraction :
-            docId = dat[0]
-            #print docId
-            #seedIds.append(str(docId))
-            currentLevelQueue.put(str(docId))
+        if random.random() < 0.5 :
+            continue
+        docId = dat[0]
+        seedIds.append(str(docId))
+        currentLevelQueue.put(str(docId))
         
     csvInputFile.close();
-    # print "currentLevelQueue.qsize=",currentLevelQueue.qsize()
-    # return
+    #print seedIds, fullDictionary.keys()
+    #return
 
     # fill-in the zero level with seed enties
     entryIds=[]
@@ -243,7 +208,7 @@ def main():
 
     while not currentLevelQueue.empty():
         docId = currentLevelQueue.get()
-        print docId
+        #print docId
         entryIds.append(docId)
         if len(entryIds)>=80 or currentLevelQueue.empty():
 
@@ -251,8 +216,7 @@ def main():
             linkedPublications = []
 
             # load items from queue
-            publications = api.loadByIds(entryIds, msAcademicIncludeTopicsIds, False)
-            # return
+            publications = api.loadByIds(entryIds, msAcademicIncludeTopicsIds)
             apiCallCounter = apiCallCounter + 1
             print "apiCallCounter=", apiCallCounter
 
@@ -295,7 +259,7 @@ def main():
                     'topics':topics.tolist(),
                     'distanceToSeed':0
                 }
-                seedIds.append(str(p.entryId))
+                #seedIds.append(str(p.entryId))
 
 
                 print "adding-seed: id",p.entryId, " dist=",0," ECC=",p.ECC," year=", p.entryPublished," title=",p.entryTitle
@@ -311,14 +275,14 @@ def main():
 
             entryIds=[]
 
+    # print seedIds, fullDictionary.keys()
+    # return
 
+    seedIds=fullDictionary.keys()
     currentLevelQueue = nextLevelQueue
-    # print(list(currentLevelQueue))
-
-    logMessages=[]
 
     # iterate over snowball levels
-    for level in xrange(0,10):
+    for level in xrange(0,3):
         print "============== level ", level
         #maQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
         
@@ -340,7 +304,7 @@ def main():
                 
                 print 'get publications referencing the indexed ones'
                 
-                linkedPublications = api.loadByRIdsExtended(inputRIds, msAcademicIncludeTopicsIds, False)
+                linkedPublications = api.loadByRIdsExtended(inputRIds, msAcademicIncludeTopicsIds)
                 inputRIds = []
                 
                 apiCallCounter = apiCallCounter + 1
@@ -350,7 +314,7 @@ def main():
                 
                 print 'get publications referenced with indexed ones'
                 
-                linkedPublications = api.loadByIds(inputIds, msAcademicIncludeTopicsIds, False)
+                linkedPublications = api.loadByIds(inputIds, msAcademicIncludeTopicsIds)
                 inputIds = []
 
                 apiCallCounter = apiCallCounter + 1
@@ -380,11 +344,16 @@ def main():
                         # apply topic model
                         topics = model.topics_from_doc(tokens)
 
+
                         distanceToSeed=1000.0
-                        for seedId in seedIds:
-                            d = difference(topics, fullDictionary[str(seedId)]['topics'])
-                            if d<distanceToSeed:
-                                distanceToSeed = d
+                        if str(p.entryId) in seedIds:
+                            distanceToSeed=0
+                        else:
+                            for seedId in seedIds:
+                                #print "testing ", seedId
+                                d = difference(topics, fullDictionary[str(seedId)]['topics'])
+                                if d<distanceToSeed:
+                                    distanceToSeed = d
 
                         # 
                         fullDictionary[str(p.entryId)] = {
@@ -403,6 +372,19 @@ def main():
                         #distances.append(distanceToSeed)
                         print "indexing: id",p.entryId, " dist=",distanceToSeed, " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle
 
+
+                # filter out top X% of linked publications
+                #distances = sorted(distances)
+                #distancesReduced = []
+                #lastDist = distances[0]
+                #distancesReduced.append(distances[0])
+                #for d in distances:
+                #    if (d - lastDist) > 0.005:
+                #        lastDist=d
+                #        distancesReduced.append(d)
+                #maxDistance = distancesReduced[int(len(distancesReduced) * nSubsamplePercentage)]
+                #print distancesReduced
+                #return
             
                 # append top X% of linked publications to nextLevelQueue if they are not in registry
                 # save top X% of linked publications to file
@@ -424,36 +406,18 @@ def main():
                             nextLevelQueue.put(docId)
                         writer.writerow(flatten(fullDictionary[str(p.entryId)]))
                         acceptedDocs.add(p.entryId)
-                        msg=("+++++accepted", len(acceptedDocs), 'of', len(indexedDocs),"id=",p.entryId, "dist=",fullDictionary[str(p.entryId)]['distanceToSeed'], " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle)
+                        # print "accepted:", len(acceptedDocs), ' of ', len(indexedDocs), p.entryId, fullDictionary[str(p.entryId)]['distanceToSeed'], fullDictionary[str(p.entryId)]['text']
+                        print "+++++accepted:", len(acceptedDocs), ' of ', len(indexedDocs)," id",p.entryId, " dist=",fullDictionary[str(p.entryId)]['distanceToSeed'], " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle
                     else:
-                        msg=("-----rejected", len(acceptedDocs), 'of', len(indexedDocs)," id=",p.entryId, " dist=",fullDictionary[str(p.entryId)]['distanceToSeed'], " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle)
-
-                    print msg
-                    logMessages.append("\t".join(map(str, msg)))
-                    
-                    if len(logMessages)>500:
-                        file = open(logFile,"a")
-                        file.write("\n".join(logMessages)) 
-                        file.write("\n") 
-                        file.close() 
-                        logMessages=[]
-
+                        print "-----rejected:", len(acceptedDocs), ' of ', len(indexedDocs)," id",p.entryId, " dist=",fullDictionary[str(p.entryId)]['distanceToSeed'], " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle
                     # mark publication as indexed
                     indexedDocs.add(p.entryId)
-
-                file = open(logFile,"a")
-                file.write("\n".join(logMessages)) 
-                file.write("\n") 
-                file.close() 
-                logMessages=[]
 
                 linkedPublications =[]
                 print "length-of-nextLevelQueue =", nextLevelQueue.qsize()
 
-        
-        
-        if nextLevelQueue.qsize()>200000:
-            break;
+
+    
         currentLevelQueue=nextLevelQueue
         #print "length of nextLevelQueue =", len(nextLevelQueue)
     

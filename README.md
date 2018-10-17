@@ -19,3 +19,4 @@ Quick start:
 * 007_SSNMF.py
 * 008_show_topic_coherence.py
 * 009_restricted_snowball.py or 009_restricted_snowball_random_subsample.py
+* 010_search_path_count.py

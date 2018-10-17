@@ -215,8 +215,9 @@ def topicListFromCsv(csv):
 '''        
 class Api:
     
-    def __init__(self, subscriptionKey):
+    def __init__(self, subscriptionKey, restEndpoint):
         self.subscriptionKey = subscriptionKey
+        self.restEndpoint = restEndpoint
     
     '''
 
@@ -266,11 +267,11 @@ class Api:
     
     
     '''
-    def loadByIds(self, entryIds, msAcademicIncludeTopicsIds):
+    def loadByIds(self, entryIds, msAcademicIncludeTopicsIds, verbose=False):
         regex = re.compile(r"\\D", re.IGNORECASE)
         sbIds = "or(" + (','.join(["Id=" + regex.sub('', str(int(x))) for x in entryIds])) + ")"
         sbFIds = "or(" + (",".join(["Composite(F.FId=" + regex.sub('', str(id)) + ")" for id in msAcademicIncludeTopicsIds])) + ")"
-        res = self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC')
+        res = self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC', verbose)
         #,E
         return res 
     '''
@@ -280,11 +281,11 @@ class Api:
     
     
     '''
-    def loadByRIds(self, entryIds, msAcademicIncludeTopicsIds):
+    def loadByRIds(self, entryIds, msAcademicIncludeTopicsIds, verbose=False):
         regex = re.compile(r"\\D", re.IGNORECASE)
         sbIds = "or(" + (','.join(["RId=" + regex.sub('', str(x)) for x in entryIds])) + ")"
         sbFIds = "or(" + (",".join(["Composite(F.FId=" + regex.sub('', str(id)) + ")" for id in msAcademicIncludeTopicsIds])) + ")"
-        return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y')
+        return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y', verbose)
     '''
 
     
@@ -292,11 +293,11 @@ class Api:
     
     
     '''
-    def loadByRIdsExtended(self, entryIds, msAcademicIncludeTopicsIds):
+    def loadByRIdsExtended(self, entryIds, msAcademicIncludeTopicsIds, verbose=False):
         regex = re.compile(r"\\D", re.IGNORECASE)
         sbIds = "or(" + (','.join(["RId=" + regex.sub('', str(x)) for x in entryIds])) + ")"
         sbFIds = "or(" + (",".join(["Composite(F.FId=" + regex.sub('', str(id)) + ")" for id in msAcademicIncludeTopicsIds])) + ")"
-        return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC')
+        return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC', verbose)
     '''
 
     
@@ -304,13 +305,13 @@ class Api:
     
     
     '''
-    def callApi(self, expr, attributes):
+    def callApi(self, expr, attributes, verbose=False):
         res = []
         headers = {
             # Request headers
             'Ocp-Apim-Subscription-Key': self.subscriptionKey,
         }
-        # print "self.subscriptionKey="+self.subscriptionKey+';'
+        if verbose : print "self.subscriptionKey="+self.subscriptionKey+';'
         # print expr
         params = urllib.urlencode({
                                   # Request parameters
@@ -325,14 +326,17 @@ class Api:
         # print params
         
         try:
-            # print(params)
+            if verbose : print(self.restEndpoint)
+            if verbose : print(params)
             # https://                      westus.api.cognitive.microsoft.com
-            conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
-            conn.request("GET", "/academic/v1.0/evaluate?" + params, "", headers)
+            #conn = httplib.HTTPSConnection('api.labs.cognitive.microsoft.com')
+            #conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
+            conn = httplib.HTTPSConnection(self.restEndpoint["host"])
+            conn.request("GET", self.restEndpoint["path"]+"?" + params, "", headers)
             response = conn.getresponse()
-            # print response
+            # if verbose : print response
             jsonString = response.read()
-            #print jsonString
+            if verbose : print jsonString
             data = json.loads(jsonString)
             #print(data['entities'])
             
@@ -384,7 +388,7 @@ class Api:
         if entity.has_key("E"):
             ex = json.loads(entity["E"])
             if ex.has_key("IA"):
-                regex = re.compile(r"\\n|\\r", re.IGNORECASE)
+                regex = re.compile(r"\n|\r", re.IGNORECASE)
                 IA = ex["IA"]
                 IndexLength =IA["IndexLength"]
                 InvertedIndex = IA["InvertedIndex"]
@@ -465,7 +469,7 @@ class Api:
 
 
 '''        
-def downloadLevel(dataDir, subscriptionKey, level, files):
+def downloadLevel(dataDir, subscriptionKey, level, files, restEndpoint, verbose=False):
 
     #outQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
     #outNextQueueFile  = dataDir + "/ms-academic-queue-" + str(level + 1) + ".csv"
@@ -483,7 +487,7 @@ def downloadLevel(dataDir, subscriptionKey, level, files):
     inIncludeTopicsFile = files['inIncludeTopicsFile']
     outQueueSizeFile = files['outQueueSizeFile']
 
-    api = Api(subscriptionKey)
+    api = Api(subscriptionKey, restEndpoint)
 
     # load queue in memory
     msAcademicQueue = api.loadList(outQueueFile);
@@ -527,7 +531,7 @@ def downloadLevel(dataDir, subscriptionKey, level, files):
         if counter % 80 == 0 or len(msAcademicQueue) == counter:
 
             # load by publication ids
-            refs = api.loadByIds(ids, msAcademicIncludeTopicsIds)
+            refs = api.loadByIds(ids, msAcademicIncludeTopicsIds, verbose)
             requestCounter = requestCounter + 1
 
             allIds = set();
