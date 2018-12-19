@@ -11,9 +11,6 @@ import academicdownload as ad
 import json
 
 def main():
-    
-
-    
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
@@ -33,6 +30,8 @@ def main():
         'outQueueSizeFile' : dataDir + "/out-queue-size.txt",
         'seedPapers':dataDir+'/in-seed.csv'
     }
+
+    print(filenames)
 
     # copy seed file to queue
     csvInputFile = open(filenames['seedPapers'], 'r')

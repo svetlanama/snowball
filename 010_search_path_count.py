@@ -21,14 +21,14 @@ def main():
     #dataDir = './data'
     n_top_paths = config.getint('main', 'n_top_paths');
     
-    min_in_degree = config.getint('main', 'min_in_degree');
+    max_citation_net_nodes = config.getint('main', 'max_citation_net_nodes');
 
     
     
     dfn0 = pd.read_csv(dataDir + '/out-citation-network.csv', sep="\t")
     #print dfn0[['entryId','dist','year','url','text']].head()
 
-    dfn = dfn0[['entryId', 'referencedBy', 'referencesTo']]
+    dfn = dfn0[['entryId', 'referencedBy', 'referencesTo']].head(max_citation_net_nodes)
     
     entries = list(dfn['entryId'])
     #print type(entries[0])
@@ -64,15 +64,27 @@ def main():
     
     
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
+    
     # remove cycles
-    cycles = list(nx.simple_cycles(citation_net))
-    for c in cycles:
-        #print 'cycle=',c
-        copies=[]
+    n_cycles = 0
+    try:
+        ccl = nx.find_cycle(citation_net, orientation='original')
+        n_cycles = n_cycles + 1
+    except:
+        ccl = False
+    while ccl:
+        c=set()
+        for p in ccl:
+            c.add(p[0])
+            c.add(p[1])
+        print 'cycle #',n_cycles, "time=", time.time() - t0
+        print c
+
+        copies = []
         for nd in c:
             # transform network
             # duplicate every node in the cycle
-            nd2=str(nd)+'.v2'
+            nd2 = str(nd) + '.v2'
             copies.append(nd2)
             citation_net.add_node(nd2)
 
@@ -80,7 +92,7 @@ def main():
         for nd in c:
             # transform network
             # duplicate every node in the cycle
-            nd2=str(nd)+'.v2'
+            nd2 = str(nd) + '.v2'
             #print nd2
             # print nd2
         
@@ -90,7 +102,7 @@ def main():
             out_edges = citation_net.in_edges(nbunch=[nd])
             for in_edge in out_edges:
                 #print "in_edge", in_edge
-                if str(in_edge[0])+'.v2' not in copies:
+                if str(in_edge[0]) + '.v2' not in copies:
                     #print "in_edge2", in_edge
                     citation_net.add_edge(in_edge[0], nd2)
 
@@ -99,7 +111,7 @@ def main():
             in_edges = citation_net.out_edges(nbunch=[nd])
             for out_edge in in_edges:
                 #print "out_edge", out_edge
-                if out_edge[1] not in c and str(in_edge[1])+'.v2' not in copies:
+                if out_edge[1] not in c and str(in_edge[1]) + '.v2' not in copies:
                     #print "out_edge 2", out_edge
                     citation_net.add_edge(nd2, in_edge[1])
 
@@ -110,11 +122,11 @@ def main():
             for nd2 in c:
                 if citation_net.has_edge(nd1, nd2):
                     citation_net.remove_edge(nd1, nd2)
-                    citation_net.add_edge(nd1, str(nd2)+'.v2')
+                    citation_net.add_edge(nd1, str(nd2) + '.v2')
 
                 if citation_net.has_edge(nd2, nd1):
                     citation_net.remove_edge(nd2, nd1)
-                    citation_net.add_edge(nd2, str(nd1)+'.v2')
+                    citation_net.add_edge(nd2, str(nd1) + '.v2')
 
         #cycles2 = list(nx.simple_cycles(citation_net))
         #print cycles2
@@ -122,7 +134,13 @@ def main():
                 
         # add edge from node to duplicate
         # replace outgoing edges
-            
+        try:
+            ccl = nx.find_cycle(citation_net, orientation='original')
+            n_cycles = n_cycles + 1
+        except:
+            ccl = False
+   
+
     #cycles2 = list(nx.simple_cycles(citation_net))
     #print cycles2
     print("decycled network is connected = ", nx.is_connected(citation_net.to_undirected()))
@@ -184,7 +202,7 @@ def main():
         n_updates = 0
         for nd in n_plus:
             if n_plus[nd] < 0:
-                out_edges = [n_plus[ed] for ( _, ed) in list(citation_net.out_edges([nd]))]
+                out_edges = [n_plus[ed] for (_, ed) in list(citation_net.out_edges([nd]))]
                 #print "out_edges=", nd, [ed for (ed, _) in list(citation_net.out_edges([nd]))]
                 if out_edges and  min(out_edges) > 0:
                     #print "updated\n\n"
@@ -194,7 +212,7 @@ def main():
     print  "n_plus=", n_plus
     #print list(citation_net.out_edges(['s']))
     
-    citation_net_flow=float(n_plus['s']*n_minus['t'])
+    citation_net_flow = float(n_plus['s'] * n_minus['t'])
     print "citation_net_flow=", citation_net_flow
     
     
@@ -207,45 +225,45 @@ def main():
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
     
     # calculate edge weights
-    all_edges=citation_net.edges()
-    edge_weights=[]
+    all_edges = citation_net.edges()
+    edge_weights = []
     for ed in all_edges:
-        evg=(ed[0], ed[1], n_minus[ed[0]]*n_plus[ed[1]])
+        evg = (ed[0], ed[1], n_minus[ed[0]] * n_plus[ed[1]])
         #print evg    
-        edge_weights.append( evg  )
+        edge_weights.append(evg)
     
-    sorted_edge_weights=sorted(edge_weights,cmp=lambda x,y: y[2]-x[2])
+    sorted_edge_weights = sorted(edge_weights, cmp=lambda x, y: (1 if y[2]>x[2] else -1) )
     #print edge_weights
     
-    wmin=sorted_edge_weights[n_top_paths][2]
-    selected_edges = [ ed for ed in sorted_edge_weights if ed[2]>= wmin]
-    print "wmin=",wmin," len(selected_edges)=",len(selected_edges), selected_edges
+    wmin = sorted_edge_weights[n_top_paths][2]
+    selected_edges = [ed for ed in sorted_edge_weights if ed[2] >= wmin]
+    print "wmin=", wmin, " len(selected_edges)=", len(selected_edges), selected_edges
 
     
     node_ids = {}
     for ed in selected_edges:
         if ed[0] not in node_ids:
-            node_ids[ed[0]]=0
+            node_ids[ed[0]] = 0
             
-        if node_ids[ed[0]]<ed[2]:
-            node_ids[ed[0]]=ed[2]
+        if node_ids[ed[0]] < ed[2]:
+            node_ids[ed[0]] = ed[2]
             
         if ed[1] not in node_ids:
-            node_ids[ed[1]]=0
+            node_ids[ed[1]] = 0
             
-        if node_ids[ed[1]]<ed[2]:
-            node_ids[ed[1]]=ed[2]
+        if node_ids[ed[1]] < ed[2]:
+            node_ids[ed[1]] = ed[2]
 
-    max_weight=float(max(node_ids.values()))
+    max_weight = float(max(node_ids.values()))
     for nd in node_ids:
-        node_ids[nd]=node_ids[nd]/max_weight
+        node_ids[nd] = node_ids[nd] / max_weight
 
     selected_nodes = pd.DataFrame([(nd, node_ids[nd]) for nd in node_ids], columns=['entryId', 'entryWeight'])
 
     snds = pd.merge(dfn0[['entryId', 'dist', 'year', 'url', 'text']], selected_nodes, how='inner', left_on='entryId', right_on='entryId')
     print snds
 
-    snds.to_csv(dataDir + '/out-citation-network-reading-plan.csv', sep="\t", quoting=csv.QUOTE_NONNUMERIC)
+    snds.to_csv(dataDir + '/out-citation-network-reading-plan-'+str(n_top_paths)+'-of-'+str(max_citation_net_nodes)+'.csv', sep="\t", quoting=csv.QUOTE_NONNUMERIC)
     
     print "Output is written to " + dataDir + '/out-citation-network-reading-plan.csv'
     
@@ -256,7 +274,7 @@ def main():
         reduced_citation_net.add_edge(ed[0], ed[1], weight=ed[2])
     
     for ed in reduced_citation_net.edges(data=True):
-        print 'ed=',ed
+        print 'ed=', ed
         
     nx.write_weighted_edgelist(reduced_citation_net, dataDir + "/out-citation-network-reduced.edgelist")
     

@@ -240,7 +240,7 @@ class Api:
                 rw = row.strip(" \n\t")
                 if len(rw) > 0:    
                     tmp = rw.split("#")
-                    q.append(tmp[0])
+                    q.append(tmp[0].strip(" \t"))
         return q
     '''
 
@@ -334,11 +334,12 @@ class Api:
             conn = httplib.HTTPSConnection(self.restEndpoint["host"])
             conn.request("GET", self.restEndpoint["path"]+"?" + params, "", headers)
             response = conn.getresponse()
-            # if verbose : print response
+            if verbose : print response.status, response.reason
             jsonString = response.read()
             if verbose : print jsonString
             data = json.loads(jsonString)
-            #print(data['entities'])
+            # print(data['entities'])
+            # print "---0002---"
             
             for entity in data['entities']:
                 en = self.loadEntity(entity)

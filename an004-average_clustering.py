@@ -22,7 +22,7 @@ def main():
     
     dataDir = config.get('main', 'dataDir')   
     
-    dataDir = './data-pronunciation-3'
+    dataDir = './mk3-1'
     n_nodes=6500
     
     #n_top=100

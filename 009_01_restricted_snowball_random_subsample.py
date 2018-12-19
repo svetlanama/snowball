@@ -57,6 +57,28 @@ def skl_divergence(v1, v2):
     return s*0.5
 
 
+# S2JSD measure
+# https://pdfs.semanticscholar.org/77b1/9a491e14697bd87e56b0bd7fa1d6c8e9f857.pdf
+def s2jsd_divergence(v1, v2):
+    
+    s = 0
+    for i in xrange(0, len(v1)):
+        s = s + (v1[i] + 0.000001) * numpy.log( 2* ( v1[i] + 0.000001 ) / ( v1[i] + v2[i] + 0.000002 ) )
+        
+    for i in xrange(0, len(v1)):
+        s = s + (v2[i] + 0.000001) * numpy.log( 2* ( v2[i] + 0.000001 ) / ( v1[i] + v2[i] + 0.000002 ) )
+    return numpy.sqrt(s)
+
+
+# https://en.wikipedia.org/wiki/Hellinger_distance
+def hellinger_distance(v1, v2):
+    s = 0
+    for i in xrange(0, len(v1)):
+        d=numpy.sqrt(v1[i])-numpy.sqrt(v2[i])
+        s = s + d*d
+    return numpy.sqrt(0.5 * s)
+
+
 # difference=kl_divergence # run 1
 difference=skl_divergence # run 2
 # difference=js_divergence # run 3
