@@ -25,10 +25,10 @@ import measures
 
 
 
-# difference=measures.kl_divergence # run 1
+difference=measures.kl_divergence # run 1
 # difference=measures.skl_divergence # run 2
 # difference=measures.js_divergence # run 3
-difference = measures.hellinger_distance
+# difference = measures.hellinger_distance
 '''
 
 
