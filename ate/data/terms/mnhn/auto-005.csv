@@ -1,0 +1,1373 @@
+term,cvalue
+system,155.17116939087072
+applications,145.4550868860157
+resources,132.86043830131945
+performance,116.37905252566527
+systems,111.79989654698467
+resource management,81.5609597229104
+implementation,68.25561911595827
+grid,61.55146963372314
+architecture,56.67953739278344
+design,55.212736236953404
+processors,54.59550444177987
+network,51.818362570647786
+application,51.78433408277332
+framework,49.96651446238662
+computer systems,43.4372233150899
+algorithms,43.365352584721194
+parallel applications,42.38912009445689
+grid computing,41.34523149730571
+resource allocation,41.22214570833016
+services,41.14490511121563
+programs,40.98688722942623
+operating system,38.816242111356935
+environments,38.80277306976647
+computational grids,38.277706729163725
+model,35.173534013559795
+users,35.00527459544168
+load balancing,33.42805950845994
+high performance,33.27106466687737
+data,32.87642612612061
+distributed resources,30.44522437723423
+processor,30.182927088671224
+time,30.142535500566268
+addition,29.1121815835177
+networks,28.337487675833056
+effectiveness,28.214442932076903
+computers,28.197715409148152
+computational grid,28.181124639487603
+computer,28.14452066808253
+jobs,27.448628350173834
+number of processors,26.961590461985917
+machines,26.83469799024931
+scheduling,26.798761443762025
+parallel processing,26.499950812497964
+grid environments,25.498920096505945
+algorithm,25.487805097100146
+tasks,25.444446996577206
+hardware,24.78694317682364
+experiments,23.978952727983707
+development,23.654912826254197
+order,23.605089382366803
+parameter sweep applications,23.325431571226428
+wide range,23.02585092994046
+communication,22.767883802652406
+internet,22.713899916810515
+control,22.679918288989512
+grid applications,22.66570675244973
+security,22.613926765768213
+network weather service,21.948459511504048
+user,21.86767556734279
+gang scheduling,21.66440160881768
+engineering,21.581057455185338
+science,21.405011639608446
+context,21.405011639608446
+issues,21.225458327778497
+program,21.136610239738747
+globus toolkit,21.112458636922067
+grid environment,20.79441541679836
+quality of service,20.23260230527315
+policies,20.08302752096052
+arpa network,19.879253198304003
+reconfigurable applications,19.775021196025975
+arpanet,19.45910149055313
+part,19.408121055678468
+resource sharing,19.408121055678468
+execution,19.27565197390411
+computational resources,18.812965295574898
+service,18.804402748814894
+computer system,18.41474136749503
+cluster,18.309245493384086
+strategies,18.236473936512844
+mechanisms,18.052267129073318
+work,17.92940707048392
+complex undertaking,17.66663387499864
+distributed systems,17.66663387499864
+simulation,17.65315237962102
+project,17.148333188549948
+machine,17.12400931168676
+grid technologies,16.9992800643373
+system performance,16.929320296248964
+interface,16.8135445917902
+overview,16.635532333438686
+technologies,16.517320672120235
+software,16.4904550165773
+computation,16.485530000488797
+performance characteristics,16.479184330021646
+information,16.385617697455533
+method,16.125835223052494
+experience,16.11809565095832
+environment,16.01998118422741
+application requirements,15.890269151739728
+access,15.759338967983119
+nimrodg resource broker,15.677471079645748
+management of resources,15.677471079645748
+service times,15.389696144769221
+workloads,15.380572041353537
+resource,15.237874903785025
+cost,15.07595117717881
+wide area,15.066682816019792
+measurements,14.909439898728003
+such systems,14.909439898728003
+network performance,14.722194895832201
+load,14.621482035207903
+ethernet,14.55609079175885
+commerce,14.55609079175885
+resource discovery,14.451858789480823
+timesharing system,14.451858789480823
+better performance,14.451858789480823
+aggregation,14.387371636790224
+use,14.256410629693146
+such applications,14.16606672028108
+availability,14.081137682132002
+computational economy,14.004803213527746
+scheduling algorithm,13.980083943251959
+models,13.95905633003252
+system resources,13.862943611198906
+distributed hierarchical control,13.862943611198906
+peertopeer,13.815510557964275
+technology,13.623628466881438
+respect,13.621371043387192
+processor allocation policies,13.469183319945897
+system parameters,13.457763384267027
+distributed computer systems,13.328818040700815
+efficiency,13.201487866499196
+network services,13.16979643063896
+grids,13.155405545113517
+data parallel computations,13.032386152085929
+purpose,12.972734327035422
+job,12.967548621600368
+characteristics,12.833803126962646
+processes,12.783852086319824
+sites,12.714559508229392
+application development,12.541976863716599
+application performance,12.541976863716599
+deadline,12.476649250079014
+fast sockets,12.424533248940001
+overhead,12.303362454939029
+analysis,12.245600189892366
+distributed computing,12.178089750893692
+simulations,11.989476363991853
+programmers,11.989476363991853
+free riding,11.989476363991853
+abstract,11.956788864659055
+parallelism,11.818198130220543
+local area networks,11.777755916665761
+customers,11.718531079126503
+chapter,11.675460894331879
+effects,11.675460894331879
+ourgrid,11.675460894331879
+computer resources,11.561487031584658
+response time,11.542272108576915
+complexity,11.51292546497023
+monitoring,11.403278555780037
+multiprocessor systems,11.333822328980494
+independent tasks,11.332853376224865
+interactive users,11.332853376224865
+process,11.270062946612024
+power,11.266065387038703
+goal,11.090354888959125
+optimal solution,11.090354888959125
+other approaches,11.090354888959125
+decisions,10.986122886681098
+mechanism,10.986122886681098
+operation,10.986122886681098
+way,10.986122886681098
+conditions,10.971140737206925
+fault tolerance,10.83220080440884
+process control,10.83220080440884
+technique,10.786375197832351
+study,10.770853721674364
+legion,10.75055681536833
+cluster resource management systems,10.666044184468241
+task,10.605151862567164
+toolkit,10.580886435488265
+supercomputers,10.556229318461034
+worldwide grid,10.556229318461034
+user interface,10.556229318461034
+new generation,10.556229318461034
+minimum number,10.556229318461034
+grid resources,10.556229318461034
+advanced research projects agency,10.489522684399441
+selection,10.400196332724773
+resource management architecture,10.39720770839918
+computer networks,10.388448928206127
+computational economy framework,10.30196161345544
+multiple administrative domains,10.30196161345544
+open grid services architecture,10.30196161345544
+utilitydriven cluster computing,10.30196161345544
+allocation,10.20957541233209
+san diego supercomputer center,10.203592144986466
+clusters,10.119948836175201
+scheduling for grid computing,10.101887489959422
+lower bounds,9.939626599152001
+basic issues,9.939626599152001
+introduction,9.939626599152001
+computing,9.787636753588615
+analyst,9.729550745276565
+example,9.729550745276565
+insight,9.729550745276565
+need,9.704060527839234
+nodes,9.656627474604601
+scalability,9.591581091193483
+predictions,9.591581091193483
+high degree,9.591581091193483
+flexibility,9.591581091193483
+disciplines,9.591581091193483
+cluster rms,9.591581091193483
+file system,9.591581091193483
+significant improvements,9.534161491043838
+service centers,9.478175703857735
+requirements,9.469509124867784
+parallel,9.440664599226455
+performance improvement,9.406482647787449
+scientific applications,9.406482647787449
+efficiency preservation,9.406482647787449
+distributed environment,9.406482647787449
+area networks,9.4048143106923
+storage,9.386154836619745
+area network,9.318399936705001
+application scheduling,9.273127360074948
+dynamic load balancing,9.273127360074948
+heterogeneous networks,9.273127360074948
+performance prediction,9.273127360074948
+interaction,9.24902462365086
+accountant,9.210340371976184
+facilities,9.210340371976184
+john wiley,9.210340371976184
+multiprocessors,9.139669428719959
+communication systems,9.13356731317027
+multiaccess protocols,9.13356731317027
+multicomputer systems,9.13356731317027
+cornell theory center,9.13356731317027
+computations,9.0077866054815
+challenges,9.001014454431271
+classes of customers,8.987196820661973
+general purpose time,8.987196820661973
+logic theory machine,8.987196820661973
+multicluster systems,8.987196820661973
+network transparency,8.987196820661973
+extent,8.958797346140274
+others,8.958797346140274
+budget,8.958797346140274
+available resources,8.83331693749932
+computing resources,8.83331693749932
+number of processes,8.83331693749932
+parallel algorithms,8.83331693749932
+speed heterogeneity,8.83331693749932
+copyright,8.788898309344878
+solutions,8.788898309344878
+spidernet,8.788898309344878
+structure,8.67325491053771
+distributed system,8.671115273688493
+performance impact,8.671115273688493
+promising platform,8.671115273688493
+memory,8.610399671568153
+workstations,8.500996433485264
+auction protocols,8.49964003216865
+design principles,8.49964003216865
+different classes,8.49964003216865
+placement process,8.49964003216865
+reputation scheme,8.49964003216865
+service providers,8.49964003216865
+metric,8.361544189730923
+parameters,8.346870962103417
+system designers,8.317766166719343
+strategy,8.317766166719343
+gridbank,8.317766166719343
+greedy algorithm,8.317766166719343
+object placement,8.317766166719343
+good performance,8.317766166719343
+impact,8.286887545179754
+size,8.191739406617536
+data management,8.12415060330663
+data processing,8.12415060330663
+execution times,8.12415060330663
+experimentation,8.12415060330663
+other resources,8.12415060330663
+software system,8.12415060330663
+research,8.086717106532694
+protocols,8.056490116899472
+number,8.039946336279733
+globus,7.934934792295673
+authentication,7.917171988845775
+globus project,7.917171988845775
+modularization,7.917171988845775
+response times,7.917171988845775
+uniform access,7.917171988845775
+processor systems,7.791336696154595
+methods,7.783640596221253
+objects,7.783640596221253
+large amounts,7.694848072384611
+unified basis,7.694848072384611
+authorization,7.694848072384611
+investigation,7.694848072384611
+data movement,7.694848072384611
+infrastructure,7.661779344044299
+algorithms for synchronous parallel computers,7.613324979540639
+coallocation,7.4547199493640015
+complex task,7.4547199493640015
+fixed number,7.4547199493640015
+grid portals,7.4547199493640015
+large number,7.4547199493640015
+wide variety,7.4547199493640015
+solution,7.3935699259727485
+metacomputing,7.2673565128076865
+network of heterogeneous workstations,7.221835825288449
+astrophysics simulation collaboratory,7.221835825288449
+complex information processing system,7.221835825288449
+drug design,7.193685818395112
+file server,7.193685818395112
+p2p systems,7.193685818395112
+queue times,7.193685818395112
+construction of distributed programs,7.16703787691222
+effect,7.16703787691222
+processor allocation,7.114864149690728
+sharedmemory multiprocessor systems,7.110696122978827
+multiprocessor,7.068903561469443
+dynamic storage allocation systems,7.052721049232323
+construction,7.040568841066
+network models,7.037486212307357
+task migration,7.037486212307357
+utilitydriven resource management,6.9930151229329605
+heterogeneous computational grid,6.931471805599453
+multiprogrammed parallel systems,6.931471805599453
+capability,6.907755278982138
+data grids,6.907755278982138
+discussion,6.907755278982138
+most cases,6.907755278982138
+preemption,6.907755278982138
+replication,6.8939489092953155
+international data grid project,6.8679744089702925
+organizations,6.839864953230766
+average execution queue length,6.802394763324311
+heterogeneous grid environment,6.802394763324311
+multiple parallel applications,6.802394763324311
+multiprocessor computer system,6.802394763324311
+resource management mechanisms,6.802394763324311
+system development corporation,6.802394763324311
+qualityofservice requirements,6.734591659972948
+shared memory multiprocessors,6.734591659972948
+unconventional decomposition,6.664409020350408
+globus metacomputing toolkit,6.664409020350408
+full parallel implementation,6.664409020350408
+evaluation,6.6519124908716885
+applicationlevel scheduling,6.591673732008658
+dynamic hardware partitions,6.591673732008658
+interactive computer system,6.591673732008658
+platforms,6.591673732008658
+program interruption system,6.591673732008658
+same time,6.591673732008658
+synthesis,6.591673732008658
+tradeoffs,6.591673732008658
+components,6.566631561501539
+overall system performance,6.516193076042964
+percentage of job movement,6.516193076042964
+resources allocation model,6.516193076042964
+synchronization primitives,6.516193076042964
+years,6.437751649736401
+various system parameters,6.437751649736401
+metacomputing environment,6.437751649736401
+requestresponse protocols,6.437751649736401
+remote execution facility,6.437751649736401
+tools,6.437751649736401
+message passing interface,6.437751649736401
+integration of simulation,6.437751649736401
+grid application behavior,6.437751649736401
+geographical distribution,6.437751649736401
+locus,6.437751649736401
+heterogeneity,6.412373393653842
+networks of workstations,6.3561076606958915
+university of california,6.3561076606958915
+types of service centers,6.3561076606958915
+share common input files,6.3561076606958915
+requestresponse protocol,6.3561076606958915
+parallel virtual machine,6.3561076606958915
+new scheduling algorithm,6.3561076606958915
+metadata catalog service,6.3561076606958915
+grid resource management,6.3561076606958915
+distributed environments,6.3561076606958915
+distributed applications,6.3561076606958915
+coefficient of variation,6.3561076606958915
+analytical queuing model,6.3561076606958915
+level,6.3507550058210445
+primitives,6.332109005733626
+differentiated services,6.270988431858299
+standard unix scheduler,6.270988431858299
+network of workstations,6.270988431858299
+equipment configuration,6.270988431858299
+dynamic code generation,6.270988431858299
+architectural framework,6.270988431858299
+different organizations,6.270988431858299
+application experiences,6.270988431858299
+cluster of workstations,6.270988431858299
+barrier synchronization,6.270988431858299
+criteria,6.238324625039507
+examples,6.238324625039507
+practice,6.238324625039507
+data grid,6.225469635785955
+goals,6.207831947960101
+manmachine interaction,6.182084906716632
+wide area applications,6.182084906716632
+scientific instruments,6.182084906716632
+queuing network models,6.182084906716632
+processor partitioning,6.182084906716632
+performance monitoring,6.182084906716632
+number of applications,6.182084906716632
+memory multiprocessors,6.182084906716632
+mean job response time,6.182084906716632
+vanilla gang scheduler,6.182084906716632
+large parameter spaces,6.182084906716632
+application throughput,6.182084906716632
+application components,6.182084906716632
+air traffic situations,6.182084906716632
+application developers,6.182084906716632
+current implementation,6.182084906716632
+communications network,6.182084906716632
+computer organizations,6.182084906716632
+computing applications,6.182084906716632
+objectives,6.14022691465079
+resource availability,6.089044875446846
+virtual organizations,6.089044875446846
+transparent interface,6.089044875446846
+symbiotic partnership,6.089044875446846
+standard workstations,6.089044875446846
+spacesharing policies,6.089044875446846
+single control stream,6.089044875446846
+resource requirements,6.089044875446846
+processor utilization,6.089044875446846
+personal workstations,6.089044875446846
+performance contracts,6.089044875446846
+particular experiment,6.089044875446846
+multiprocessor system,6.089044875446846
+job size distribution,6.089044875446846
+communications subnet,6.089044875446846
+arpa computer network,6.089044875446846
+hosts,6.035392171627876
+multidomain clusters,5.991464547107982
+timeslicing policies,5.991464547107982
+statistical analysis,5.991464547107982
+set of core services,5.991464547107982
+policy extensibility,5.991464547107982
+performance measures,5.991464547107982
+parallel application,5.991464547107982
+behavior of networks,5.991464547107982
+individual resources,5.991464547107982
+demand for resources,5.991464547107982
+communication demand,5.991464547107982
+application programs,5.991464547107982
+architectural design,5.991464547107982
+detailed description,5.991464547107982
+workload,5.941261547656674
+parallel processors,5.8888779583328805
+timesharing systems,5.8888779583328805
+threshold algorithm,5.8888779583328805
+standard mechanisms,5.8888779583328805
+service description,5.8888779583328805
+resource conditions,5.8888779583328805
+population of users,5.8888779583328805
+performance penalty,5.8888779583328805
+pattern recognition,5.8888779583328805
+processor selection,5.8888779583328805
+grid infrastructure,5.8888779583328805
+facility allocation,5.8888779583328805
+efficient execution,5.8888779583328805
+dynamic information,5.8888779583328805
+communication needs,5.8888779583328805
+communication layer,5.8888779583328805
+communication delay,5.8888779583328805
+client workstations,5.8888779583328805
+average parallelism,5.8888779583328805
+advance reservation,5.8888779583328805
+schemes,5.8377304471659395
+mapping,5.8377304471659395
+library,5.8377304471659395
+efforts,5.8377304471659395
+concern,5.8377304471659395
+article,5.8377304471659395
+account,5.8377304471659395
+basis,5.793976484762761
+network interfaces,5.780743515792329
+system utilization,5.780743515792329
+system information,5.780743515792329
+resource brokering,5.780743515792329
+production systems,5.780743515792329
+parallel algorithm,5.780743515792329
+other applications,5.780743515792329
+order of magnitude,5.780743515792329
+new infrastructure,5.780743515792329
+application domain,5.780743515792329
+information system,5.780743515792329
+highenergy physics,5.780743515792329
+high priority jobs,5.780743515792329
+executable staging,5.780743515792329
+dynamic management,5.780743515792329
+current generation,5.780743515792329
+local area network,5.780743515792329
+migration,5.746587356110113
+advances,5.718464239619548
+resource provider,5.666426688112432
+nyu ultracomputer,5.666426688112432
+parallel programs,5.666426688112432
+performance gains,5.666426688112432
+provide languages,5.666426688112432
+state information,5.666426688112432
+scheduling policy,5.666426688112432
+scheduling system,5.666426688112432
+simulation system,5.666426688112432
+simulator network,5.666426688112432
+user perspectives,5.666426688112432
+network resources,5.666426688112432
+network bandwidth,5.666426688112432
+memory management,5.666426688112432
+consistent access,5.666426688112432
+many applications,5.666426688112432
+adaptive policies,5.666426688112432
+characterizations,5.666426688112432
+cluster resources,5.666426688112432
+computer programs,5.666426688112432
+abstract workflow,5.666426688112432
+data repositories,5.666426688112432
+early experiences,5.666426688112432
+general framework,5.666426688112432
+internal machines,5.666426688112432
+longhaul networks,5.666426688112432
+behavior,5.644198470273841
+sons,5.545177444479562
+sketchpad system,5.545177444479562
+simulation study,5.545177444479562
+resource trading,5.545177444479562
+real environment,5.545177444479562
+rand corporation,5.545177444479562
+prototype system,5.545177444479562
+program behavior,5.545177444479562
+processorsharing,5.545177444479562
+poor performance,5.545177444479562
+node,5.545177444479562
+new applications,5.545177444479562
+cpu availability,5.545177444479562
+measurement data,5.545177444479562
+application code,5.545177444479562
+best performance,5.545177444479562
+computer utility,5.545177444479562
+basic mechanisms,5.545177444479562
+dynamic policies,5.545177444479562
+electrical grids,5.545177444479562
+flexible message,5.545177444479562
+function,5.545177444479562
+important thread,5.545177444479562
+qos,5.44728593131271
+service brokers,5.41610040220442
+relative merits,5.41610040220442
+research agenda,5.41610040220442
+resource access,5.41610040220442
+resource owners,5.41610040220442
+reverse auction,5.41610040220442
+sequential jobs,5.41610040220442
+workload traces,5.41610040220442
+set of services,5.41610040220442
+single building,5.41610040220442
+storage systems,5.41610040220442
+system capacity,5.41610040220442
+user objectives,5.41610040220442
+pvm computation,5.41610040220442
+world wide grid,5.41610040220442
+recent advances,5.41610040220442
+identical units,5.41610040220442
+network latency,5.41610040220442
+daemon activity,5.41610040220442
+active messages,5.41610040220442
+collaboratories,5.41610040220442
+community grids,5.41610040220442
+compute servers,5.41610040220442
+countermeasures,5.41610040220442
+massive amounts,5.41610040220442
+cpusharing grid,5.41610040220442
+data collection,5.41610040220442
+different sites,5.41610040220442
+distributed set,5.41610040220442
+fault detection,5.41610040220442
+idle processors,5.41610040220442
+implementations,5.41610040220442
+case,5.391144737688463
+utility,5.388674258922406
+rsexec,5.375278407684165
+person,5.375278407684165
+thesis,5.375278407684165
+routes,5.375278407684165
+events,5.375278407684165
+kernel,5.375278407684165
+choice,5.375278407684165
+condor,5.375278407684165
+discovery,5.336116830673677
+highperformance,5.293007211245229
+key technology,5.278114659230517
+worm  programs,5.278114659230517
+world wide web,5.278114659230517
+various levels,5.278114659230517
+task placement,5.278114659230517
+single machine,5.278114659230517
+service center,5.278114659230517
+resource usage,5.278114659230517
+number of jobs,5.278114659230517
+maximum amount,5.278114659230517
+load imbalance,5.278114659230517
+new challenges,5.278114659230517
+internal names,5.278114659230517
+host computers,5.278114659230517
+access service,5.278114659230517
+grid simulator,5.278114659230517
+grid scheduler,5.278114659230517
+execution time,5.278114659230517
+empirical data,5.278114659230517
+dynamic nature,5.278114659230517
+cache affinity,5.278114659230517
+auction models,5.278114659230517
+approximations,5.278114659230517
+sharing,5.189093730814169
+grid application,5.149093341302451
+major factors,5.1298987149230735
+utility layer,5.1298987149230735
+status report,5.1298987149230735
+special cases,5.1298987149230735
+site autonomy,5.1298987149230735
+potential use,5.1298987149230735
+object system,5.1298987149230735
+new protocols,5.1298987149230735
+metric system,5.1298987149230735
+semantic grid,5.1298987149230735
+large numbers,5.1298987149230735
+idle machines,5.1298987149230735
+host computer,5.1298987149230735
+global access,5.1298987149230735
+general model,5.1298987149230735
+data channels,5.1298987149230735
+functionality,5.1298987149230735
+fresh impetus,5.1298987149230735
+distributions,5.1298987149230735
+different job,5.1298987149230735
+policy,5.095315990617281
+web services,4.969813299576001
+small number,4.969813299576001
+remote users,4.969813299576001
+own policies,4.969813299576001
+mpi programs,4.969813299576001
+grid systems,4.969813299576001
+low overhead,4.969813299576001
+large degree,4.969813299576001
+high latency,4.969813299576001
+minimum time,4.969813299576001
+grid economy,4.969813299576001
+expectations,4.969813299576001
+earlier work,4.969813299576001
+dynamic load,4.969813299576001
+data streams,4.969813299576001
+coscheduling,4.969813299576001
+capabilities,4.969813299576001
+broadcasting,4.969813299576001
+bibliography,4.969813299576001
+access files,4.969813299576001
+cactus,4.927338540377151
+webos,4.828313737302301
+realization,4.795790545596741
+new systems,4.795790545596741
+mpi message,4.795790545596741
+large hosts,4.795790545596741
+individuals,4.795790545596741
+cost models,4.795790545596741
+cactus code,4.795790545596741
+nature,4.778025251274814
+bounds,4.778025251274813
+xsufferage,4.605170185988092
+wide class,4.605170185988092
+user level,4.605170185988092
+system bus,4.605170185988092
+limitation,4.605170185988092
+modularity,4.605170185988092
+middleware,4.605170185988092
+many users,4.605170185988092
+literature,4.605170185988092
+other hand,4.605170185988092
+extensions,4.605170185988092
+data files,4.605170185988092
+data bases,4.605170185988092
+cpu cycles,4.605170185988092
+continents,4.605170185988092
+case study,4.605170185988092
+attributes,4.605170185988092
+ash system,4.605170185988092
+data types,4.605170185988092
+integration,4.529357737508033
+principle,4.394449154672439
+usability,4.394449154672439
+terabytes,4.394449154672439
+synergies,4.394449154672439
+stability,4.394449154672439
+questions,4.394449154672439
+dpf,4.394449154672439
+nws,4.394449154672439
+ltd,4.394449154672439
+highspeed,4.394449154672439
+existence,4.394449154672439
+attention,4.394449154672439
+aim,4.394449154672439
+information distribution aspects of design methodology d l parnas department,4.330733340286331
+pvm,4.257122618588926
+job response time,4.249820016084325
+development of serviceoriented distributed computing applications,4.174387269895637
+platforms for resourceintensive distributed parallel applications,4.174387269895637
+steering,4.1588830833596715
+schedule,4.1588830833596715
+routines,4.1588830833596715
+peer,4.1588830833596715
+nest,4.1588830833596715
+mars,4.1588830833596715
+location,4.1588830833596715
+joss,4.1588830833596715
+gara,4.1588830833596715
+features,4.1588830833596715
+escience,4.1588830833596715
+drms,4.1588830833596715
+date,4.1588830833596715
+customer,4.1588830833596715
+contrast,4.1588830833596715
+concerns,4.1588830833596715
+business,4.1588830833596715
+ashs,4.1588830833596715
+appendix,4.1588830833596715
+accuracy,4.1588830833596715
+contention,4.144653167389283
+scalable networked information processing environment snipe,4.07753744390572
+messagepassing between different highperformance computers,4.060443010546419
+processing,4.049373784230908
+mpi,4.028245058449736
+coherent internal objectoriented resource representation,4.02535169073515
+management for high performance data intensive computing,4.02535169073515
+execution of failureresilient message passing interface,4.007333185232471
+reservation,3.996492121330618
+integration with underlying native platform facilities,3.9889840465642745
+large wide area heterogeneous virtual computer systems,3.9889840465642745
+greedyheuristic adaptive resource selection strategies,3.9889840465642745
+development of programtoprogram communication services,3.9889840465642745
+class of central processor service time distributions,3.970291913552122
+computer science carnegiemelion university pittsburgh,3.970291913552122
+p2p,3.9550042392051954
+distributed resource performance forecasting service,3.9512437185814275
+enforcement of dynamic resource management policies,3.9318256327243257
+variety of different resource management strategies,3.9318256327243257
+rig rochester s intelligent gateway system overview,3.9318256327243257
+executinglargescale resource intensive applications,3.9318256327243257
+applications with hardwarelevel network performance,3.9318256327243257
+complicated application level task control policies,3.9318256327243257
+carefullydesigned declarative packetfilter language,3.9318256327243257
+autocorrelation between successive cpu measurements,3.9318256327243257
+host,3.914242901985573
+struct various higher level metacomputing services,3.912023005428146
+notationthe terminal state transition diagramwhich,3.912023005428146
+several cachecoherent sharedmemory multiprocessors,3.912023005428146
+set of customizable resource management mechanisms,3.912023005428146
+powerful multiprocess large memory virtual machine,3.912023005428146
+execution of distributed metacomputer applications,3.912023005428146
+introduces advanced programtoprogram communication,3.912023005428146
+highthroughput productionquality grid environments,3.912023005428146
+development of new large scale timesharing systems,3.912023005428146
+insistence on standardized measurement information,3.912023005428146
+gridsim,3.8918202981106265
+testbed,3.8918202981106265
+sources,3.8918202981106265
+persons,3.8918202981106265
+meaning,3.8918202981106265
+key performancecritical transport layer functions,3.8918202981106265
+improvements over more conventional architectures,3.8918202981106265
+costeffectiveness of distributed computer systems,3.8918202981106265
+classification of parallel algorithms corresponds,3.8918202981106265
+changes,3.8918202981106265
+beranek,3.8918202981106265
+attempt,3.8918202981106265
+anatomy,3.8918202981106265
+absence,3.8918202981106265
+computer communication network design experience,3.871201010907891
+typical highperformance global computing setting,3.871201010907891
+experimental multimicroprocessor computer system,3.871201010907891
+commodity marketbased resources allocation model,3.871201010907891
+board nab high performance network communication,3.871201010907891
+large scale information processing applications,3.8501476017100584
+various possible data processing configurations,3.8501476017100584
+support for dynamic integrated layer processing,3.8501476017100584
+set of topologyspecific communication functions,3.8501476017100584
+multiprogrammed parallel processing environment,3.8501476017100584
+javabased discreteevent grid simulation toolkit,3.8501476017100584
+important fetchandadd synchronization primitive,3.8501476017100584
+implementation of basic coallocation mechanisms,3.8501476017100584
+componentoriented application design philosophy,3.8501476017100584
+characteristic of processor allocation policies,3.8501476017100584
+distributedmemory cachecoherent multiprocessor,3.828641396489095
+representation of parallel processable streams,3.828641396489095
+principles of distributed hierarchical control,3.828641396489095
+multicomputer route oriented simulation system,3.828641396489095
+implementation of highperformance applications,3.828641396489095
+algorithms for asynchronous parallel computers,3.828641396489095
+development of complex multiparty applications,3.828641396489095
+current implementation supports c applications,3.828641396489095
+cooperation of autonomous distributed entities,3.828641396489095
+construction of applicationlevel coreservation,3.828641396489095
+adaptability for userlevel scheduling policies,3.828641396489095
+reliance on clientserver architectures places,3.8066624897703196
+vendorindependent messagepassing environments,3.8066624897703196
+unnecessary interprocess communication burden,3.8066624897703196
+class of largediameter multiprocessor systems,3.8066624897703196
+microprocessors for building computer systems,3.8066624897703196
+adaptive wide area resource environment aware,3.8066624897703196
+convenient remote electrictypewriter consoles,3.8066624897703196
+infrastructure for next generation computing,3.784189633918261
+traditional technical computing applications,3.784189633918261
+mbyte primary memory prototype configuration,3.784189633918261
+integrated p2p service composition framework,3.784189633918261
+performance of various parallel applications,3.784189633918261
+honeywell experimental distributed processor,3.784189633918261
+grid scheduling system coallocated computing,3.784189633918261
+distributed memory parallel computer systems,3.784189633918261
+carnegiemellon university computation center,3.784189633918261
+architecture for data intensive applications,3.784189633918261
+sequence of interrelated computational tasks,3.784189633918261
+longterm distributed computing applications,3.7612001156935624
+various representative economybased systems,3.7612001156935624
+thousands of autonomous processing elements,3.7612001156935624
+support for systemlevel resource management,3.7612001156935624
+singleinstruction streammultipledata stream,3.7612001156935624
+scheduling of constituent application tasks,3.7612001156935624
+perspective on distributed computer systems,3.7612001156935624
+management of distributed cluster resources,3.7612001156935624
+intelligent highperformance network adapter,3.7612001156935624
+impact of inaccurate performance prediction,3.7612001156935624
+grid technologies enable largescale sharing,3.7612001156935624
+generalpurpose resource selection framework,3.7612001156935624
+development of largescale grid applications,3.7612001156935624
+benefits of frequent processor reallocation,3.7612001156935624
+acceptable parallel application performance,3.7612001156935624
+highperformance applicationscharacteristics,3.7612001156935624
+management of heterogeneous resource types,3.7376696182833684
+usercentric performance evaluation metrics,3.7376696182833684
+terms of web services description language,3.7376696182833684
+simulation of heterogeneous grid resources,3.7376696182833684
+several researchbased supercomputing sites,3.7376696182833684
+performance of application reconfiguration,3.7376696182833684
+man machine graphical communication system,3.7376696182833684
+interest in webbased distributed computing,3.7376696182833684
+extensible resource specification language,3.7376696182833684
+characteristics of individual applications,3.7376696182833684
+appropriate resource management mechanisms,3.7376696182833684
+application execution rate characteristics,3.7376696182833684
+scheduler,3.7183800539536023
+time for multiprocessor optimal schedules,3.713572066704308
+sharing of specialized computer resources,3.713572066704308
+improvement in overall system utilization,3.713572066704308
+policies against application requirements,3.713572066704308
+parameterized dynamic spacesharing policy,3.713572066704308
+parallelism during actual program writing,3.713572066704308
+number of alternative allocation policies,3.713572066704308
+multiprocessor among several applications,3.713572066704308
+requirements of economybased grid systems,3.713572066704308
+ibm advanced systems development division,3.713572066704308
+families of processor allocation policies,3.713572066704308
+dynamic metascheduling architecture model,3.713572066704308
+distinct flow typesforeground media flows,3.713572066704308
+disciplines on multiple processor systems,3.713572066704308
+different resource typeparallel computers,3.713572066704308
+development of new timesharing algorithms,3.713572066704308
+applicationspecific safe message handlers,3.713572066704308
+high performance local area communication,3.713572066704308
+nimrodg parameter specification language,3.6888794541139363
+explores exchangeable composition orders,3.6888794541139363
+largescale integrated circuit technology,3.6888794541139363
+lightweight autonomous reputation scheme,3.6888794541139363
+engineering of processor interconnection,3.6888794541139363
+partitioning method utilizes information,3.6888794541139363
+sharedmemory multiprocessor environments,3.6888794541139363
+uniprocessor multiprogrammed environment,3.6888794541139363
+execution of reconfigurable applications,3.6888794541139363
+account thefundamental system parameters,3.6888794541139363
+econdor under nonuniform load conditions,3.6888794541139363
+development of digital computer programs,3.6888794541139363
+detailed endtoend monitoring information,3.6888794541139363
+current hosttonetwork adapter interfaces,3.6888794541139363
+concept of applicationcentric scheduling,3.6888794541139363
+combination of userlevel microbenchmarks,3.6888794541139363
+aninfrastructure for resource management,3.6888794541139363
+development of robust middleware support,3.6888794541139363
+range of efficiency preservation values,3.6635616461296463
+inadequate internal memory architecture,3.6635616461296463
+intelligent processor allocation method,3.6635616461296463
+internet middleware services deductions,3.6635616461296463
+level of local area network packet size,3.6635616461296463
+preemptable remote execution facilities,3.6635616461296463
+proportional share allocation technique,3.6635616461296463
+shared memory multiprocessor scheduling,3.6635616461296463
+reliable computer communications system,3.6635616461296463
+several representative computer systems,3.6635616461296463
+share petabyterange information volumes,3.6635616461296463
+high performance computer communication,3.6635616461296463
+use of distributed hierarchical control,3.6635616461296463
+viable multiplemicroprocessor structure,3.6635616461296463
+highperformance computational resources,3.6635616461296463
+sophisticated realtime animation system,3.6635616461296463
+high level grid application development,3.6635616461296463
+development of distributed computations,3.6635616461296463
+heterogeneous data domain decomposition,3.6635616461296463
+acceptable parallel program performance,3.6635616461296463
+analysis of performance characteristics,3.6635616461296463
+challenges for internetserver workloads,3.6635616461296463
+components of application response time,3.6635616461296463
+darwin customizable resource management,3.6635616461296463
+4processor silicon graphics workstation,3.6635616461296463
+development of resourcesharing networks,3.6635616461296463
+flexible softwareonly storage appliance,3.6635616461296463
+future escience research infrastructure,3.6635616461296463
+generalpurpose scalable parallel system,3.6635616461296463
+globus information service capabilities,3.6635616461296463
+distributed software measurement system,3.6635616461296463
+theorem from electrical circuit theory,3.6375861597263857
+offtheshelf atm communication hardware,3.6375861597263857
+performance of singleuser workstations,3.6375861597263857
+potential for significant improvements,3.6375861597263857
+previous high performance rtc policies,3.6375861597263857
+spidernet service composition solution,3.6375861597263857
+traces from several parallel computers,3.6375861597263857
+throughput of multiprogramming systems,3.6375861597263857
+underlying worm maintenance mechanisms,3.6375861597263857
+userlevel job submission specification,3.6375861597263857
+utility of various hardware facilities,3.6375861597263857
+various performancecritical operations,3.6375861597263857
+matching storage resource capabilities,3.6375861597263857
+mpichgq combines new qos specification,3.6375861597263857
+dynamic processor coallocation service,3.6375861597263857
+introduction of appropriate algorithms,3.6375861597263857
+collection of independent task modules,3.6375861597263857
+advanced computational collaboratories,3.6375861597263857
+algorithms increase system performance,3.6375861597263857
+assumption that job demand information,3.6375861597263857
+basic replica selection service design,3.6375861597263857
+interconnection of local area networks,3.6375861597263857
+clusterbased scalable network services,3.6375861597263857
+computational astrophysics application,3.6375861597263857
+determinant of efficiency preservation,3.6375861597263857
+distributed resource management system,3.6375861597263857
+dynamic resource performance forecasts,3.6375861597263857
+high performance parallel applications,3.6375861597263857
+indication of network traffic patterns,3.6375861597263857
+nonperiodic load information exchange,3.6109179126442243
+reconfigurable irregular applications,3.6109179126442243
+protocols that allow volume transfers,3.6109179126442243
+pvm intertask standard communications,3.6109179126442243
+traditional highperformance computing,3.6109179126442243
+recordsetting distributed simulations,3.6109179126442243
+support for aggressive specialization,3.6109179126442243
+tool for air traffic control research,3.6109179126442243
+more conventional clientserver models,3.6109179126442243
+naive timesharing scheduling policies,3.6109179126442243
+preemption per job outperforms aspmax,3.6109179126442243
+minimal interrupt processing overhead,3.6109179126442243
+advanced technology development areas,3.6109179126442243
+lightweight directory access protocol,3.6109179126442243
+grid application development software,3.6109179126442243
+grid accounting services architecture,3.6109179126442243
+features of large distributed systems,3.6109179126442243
+failure resilient service composition,3.6109179126442243
+development of innovative new science,3.6109179126442243
+analysis of large scientific datasets,3.6109179126442243
+metacomputing software infrastructure,3.6109179126442243
+prototype gara implementation builds,3.58351893845611
+resourceefficient sendee composition,3.58351893845611
+representative cpu scheduling policy,3.58351893845611
+reconfigurable parallel applications,3.58351893845611
+rational laplacestieltjes transforms,3.58351893845611
+network transparent high reliability,3.58351893845611
+programs across multidomain clusters,3.58351893845611
+performance of parallel applications,3.58351893845611
+number of longterm research projects,3.58351893845611
+newman,3.58351893845611
+sender,3.58351893845611
+result,3.58351893845611
+strategies for multicomputer systems,3.58351893845611
+series of proofofconcept experiments,3.58351893845611
+significant performance improvements,3.58351893845611
+source,3.58351893845611
+static resource allocation framework,3.58351893845611
+multidimensional markovian processes,3.58351893845611
+supply,3.58351893845611
+survey current research developments,3.58351893845611
+sweep template user level middleware,3.58351893845611
+terms of applicationlevel components,3.58351893845611
+variety of different query languages,3.58351893845611
+vision,3.58351893845611
+need for large intermediate storages,3.58351893845611
+primitives for distributed computing,3.58351893845611
+metacomputing infrastructure toolkit,3.58351893845611
+detail,3.58351893845611
+acyclic graph composition topologies,3.58351893845611
+agents,3.58351893845611
+metacomputer adaptive runtime system,3.58351893845611
+analysis of workload characteristics,3.58351893845611
+application load distribution policy,3.58351893845611
+better resource allocation decisions,3.58351893845611
+bricks,3.58351893845611
+bricks performance evaluation system,3.58351893845611
+configuration in turn require access,3.58351893845611
+course,3.58351893845611
+delays,3.58351893845611
+aggregation of distributed resources,3.58351893845611
+development of parallel applications,3.58351893845611
+generalpurpose data transfer network,3.58351893845611
+measures of total system performance,3.58351893845611
+discover computational collaboratory,3.58351893845611
+information about resource structure,3.58351893845611
+heterogeneity on computational grids,3.58351893845611
+longrange autocorrelation dependence,3.58351893845611
+focus on largescale resource sharing,3.58351893845611
+family,3.58351893845611
+enterprisescale network file systems,3.58351893845611
+effectiveness of resource allocation,3.58351893845611
+location independent name structure,3.5553480614894135
+same ongoing computational activity,3.5553480614894135
+many recent computer system designs,3.5553480614894135
+monitoring sensor management system,3.5553480614894135
+network qualityofservice mechanisms,3.5553480614894135
+networks with general service times,3.5553480614894135
+networkwide hierarchical name space,3.5553480614894135
+performance of such compute servers,3.5553480614894135
+place limited functionality demands,3.5553480614894135
+simple buffer management strategies,3.5553480614894135
+scheduling of parallel applications,3.5553480614894135
+scope of dataintensive applications,3.5553480614894135
+set of heterogeneous host computers,3.5553480614894135
+significant system design decisions,3.5553480614894135
+stock of available resources varies,3.5553480614894135
+strategies in such parallel systems,3.5553480614894135
+ubiquitous gridbased infrastructure,3.5553480614894135
+various different system algorithms,3.5553480614894135
+workstationbased distributed system,3.5553480614894135
+highperformance server applications,3.5553480614894135
+lightweight software infrastructure,3.5553480614894135
+performance of paged memory systems,3.5553480614894135
+highlevel replica selection service,3.5553480614894135
+corresponding security architecture,3.5553480614894135
+help of reconfigurable applications,3.5553480614894135
+accurate stochastic workload models,3.5553480614894135
+analysis of related queueing models,3.5553480614894135
+applicationspecific mapping modules,3.5553480614894135
+basic sequential machine schedulers,3.5553480614894135
+capability of economicbased systems,3.5553480614894135
+class of dataintensive applications,3.5553480614894135
+construction of computational grids,3.5553480614894135
+conventional hosttonetwork adapters,3.5553480614894135
+applicationspecific characteristics,3.5553480614894135
+cost of dynamic data redistribution,3.5553480614894135
+distributed metacomputing framework,3.5553480614894135
+format for various recordsdatabases,3.5553480614894135
+current machines processor affinity,3.5553480614894135
+dynamic data replication strategies,3.5553480614894135
+eonventional circuitswitched scheme,3.5553480614894135
+disciplines for resource allocation,3.5553480614894135
+different load balancing strategies,3.5553480614894135
+deployment of pvm runtime libraries,3.5553480614894135
+demands against available equipment,3.5553480614894135
+message,3.5534011417531803
+allocation policies,3.533326774999728
+processes for timeshared computers,3.5263605246161616
+number of interesting similarities,3.5263605246161616
+organization of computer resources,3.5263605246161616
+opportunities for high performance,3.5263605246161616
+operating system design principles,3.5263605246161616
+number of personal macro languages,3.5263605246161616
+multisite co allocation algorithms,3.5263605246161616
+nontechnical organisational issues,3.5263605246161616
+nextgeneration computing platforms,3.5263605246161616
+new network subsystem architecture,3.5263605246161616
+network resource management system,3.5263605246161616
+multiinstitutional research effort,3.5263605246161616
+requestresponse transport protocol,3.5263605246161616
+production heterogeneous platforms,3.5263605246161616
+underlying computer infrastructure,3.5263605246161616
+sessions of several hours duration,3.5263605246161616
+set of complex valueadded services,3.5263605246161616
+sharedmemory mimd parallel machine,3.5263605246161616
+single nationwide virtual computer,3.5263605246161616
+storeandforward broadcast networks,3.5263605246161616
+stretch feasibility considerations,3.5263605246161616
+suite of multiprogrammed workloads,3.5263605246161616
+systems for windowsbased platforms,3.5263605246161616
+throughput under high network load,3.5263605246161616
+total systemwide executive control,3.5263605246161616
+traditional unix scheduling policy,3.5263605246161616
+message passing parallel computers,3.5263605246161616
+use of application characteristics,3.5263605246161616
+variety of heterogeneous resources,3.5263605246161616
+variety of scientific applications,3.5263605246161616
+most other possible configurations,3.5263605246161616
+impact of various other parameters,3.5263605246161616
+matrixgeometric solution technique,3.5263605246161616
+controlled statistical arbitration,3.5263605246161616
+algorithms exhibit stable behavior,3.5263605246161616
+application programming interfaces,3.5263605246161616
+appropriate hardware configuration,3.5263605246161616
+ashs application specific handlers,3.5263605246161616
+aspect of grid resource scheduling,3.5263605246161616
+aspects of distributed computation,3.5263605246161616
+availability through fault masking,3.5263605246161616
+avoidance of residual dependencies,3.5263605246161616
+lightweight instrumentation system,3.5263605246161616
+clusters of commodity workstations,3.5263605246161616
+communication in parallel programs,3.5263605246161616
+complex resource management issues,3.5263605246161616
+concept of efficiency preservation,3.5263605246161616
+case for economy grid architecture,3.5263605246161616
+different processor configurations,3.5263605246161616
+generic data transfer architecture,3.5263605246161616
+distributed computing environments,3.5263605246161616
+innovation in protocol structuring,3.5263605246161616
+individual application performance,3.5263605246161616
+hundreds of administrative domains,3.5263605246161616
+hardwired inkernel implementations,3.5263605246161616
+kernel processor allocation policy,3.5263605246161616
+generalpurpose timesharing systems,3.5263605246161616
+events from different environments,3.5263605246161616
+evaluation of communication demand,3.5263605246161616
+distribution of interarrival times,3.5263605246161616
+distributed streaming applications,3.5263605246161616
+few multiplemicroprocessor systems,3.5263605246161616
+factors,3.502638268299564
+metaphor for effective management,3.4965075614664802
+proactive failure recovery scheme,3.4965075614664802
+performance of several algorithms,3.4965075614664802
+notion of applicationoriented qos,3.4965075614664802
+nonpreemptive scheduling strategy,3.4965075614664802
+large international collaboration,3.4965075614664802
+messagepassing parallel computers,3.4965075614664802
+serviceoriented grid architecture,3.4965075614664802
+local area communication networks,3.4965075614664802
+information services architecture,3.4965075614664802
+individual application components,3.4965075614664802
+productiongrade grid environments,3.4965075614664802
+userlevel grid middleware project,3.4965075614664802
+sophisticated distributed systems,3.4965075614664802
+support for programmer management,3.4965075614664802
+top of different native platforms,3.4965075614664802
+traditional scheduling approaches,3.4965075614664802
+unified hardwaresoftware parallel,3.4965075614664802
+use of packet radio communication,3.4965075614664802
+useful applicationlevel functions,3.4965075614664802
+users with different requirements,3.4965075614664802
+wellknown programming environment,3.4965075614664802
+wwwglobusorgresearchpapersogsapdf,3.4965075614664802
+implementation of complex systems,3.4965075614664802
+implications of web service ideas,3.4965075614664802
+monitoring in distributed systems,3.4965075614664802
+impact of cpu service disciplines,3.4965075614664802
+effectiveness of resource brokers,3.4965075614664802
+highspeed transmission capabality,3.4965075614664802
+application programming interface,3.4965075614664802
+application scheduling challenges,3.4965075614664802
+applicationtoarchitecture mapping,3.4965075614664802
+control of exceptional conditions,3.4965075614664802
+deliverable performance potential,3.4965075614664802
+detailed endtoend instrumentation,3.4965075614664802
+different optimization strategies,3.4965075614664802
+distributed computational economy,3.4965075614664802
+distributed load balancing policy,3.4965075614664802
+doe common component architecture,3.4965075614664802
+computational economy methodology,3.4965075614664802
+effects of attempted improvements,3.4965075614664802
+frontend communication processors,3.4965075614664802
+examples of approximate solutions,3.4965075614664802
+heterogeneous distributed systems,3.4965075614664802
+gmpls network resource management,3.4965075614664802
+generalpurpose programming system,3.4965075614664802
+global information infrastructure,3.4965075614664802
+flexible execution model supports,3.4965075614664802
+allocation of multiple timeslices,3.4965075614664802
+firstcomefirstserved type service,3.4965075614664802
+field of data intensive computing,3.4965075614664802
+excessive cache refillingour work,3.4965075614664802
+reliable highspeed communication,3.4657359027997265
+parallel scientific applications,3.4657359027997265
+regular prioritybased scheduling,3.4657359027997265
+programs under normal conditions,3.4657359027997265
+professional computer programmer,3.4657359027997265
+processes at application runtime,3.4657359027997265
+primary computing infrastructure,3.4657359027997265
+performance of such applications,3.4657359027997265
+performance of computer networks,3.4657359027997265
+los alamos scientific laboratory,3.4657359027997265
+parallel programming environment,3.4657359027997265
+number of scientific disciplines,3.4657359027997265
+multiple data transfer protocols,3.4657359027997265
+multidomain clusters environment,3.4657359027997265
+memory sharing executive program,3.4657359027997265
+local area communication network,3.4657359027997265
+lightweight middleware solutions,3.4657359027997265
+robustness in failure management,3.4657359027997265
+resources on distributed systems,3.4657359027997265
+uc berkeley dialup ip population,3.4657359027997265
+scheduler performance evaluation,3.4657359027997265
+transient grid service instances,3.4657359027997265
+various communication geometries,3.4657359027997265
+variety of different io services,3.4657359027997265
+users of bagoftasks applications,3.4657359027997265
+use of realworld market concepts,3.4657359027997265
+underlying physical architecture,3.4657359027997265
+knowledge of packet destinations,3.4657359027997265
+typical  traffic characteristics,3.4657359027997265
+synchronisation of remote copies,3.4657359027997265
+sense that traditional protocols,3.4657359027997265
+support of computational economy,3.4657359027997265
+structure of parallel algorithms,3.4657359027997265
+special inputoutput capabilities,3.4657359027997265
+software development environment,3.4657359027997265
+singlecomputer simulation system,3.4657359027997265
+simple multimachine test program,3.4657359027997265
+shared memory parallel computers,3.4657359027997265
+level of logical requestresponse,3.4657359027997265
+number of data stream processors,3.4657359027997265
+interactive computer environment,3.4657359027997265
+dynamic scheduling process tries,3.4657359027997265
+development of grid technologies,3.4657359027997265
+development of grid applications,3.4657359027997265
+default data movement strategies,3.4657359027997265
+coupling of distributed clusters,3.4657359027997265
+cost time optimisation algorithm,3.4657359027997265
+conventional transport protocols,3.4657359027997265
+construction of pipeline systems,3.4657359027997265
+computer communications networks,3.4657359027997265
+computationoriented applications,3.4657359027997265
+cluster of independent computers,3.4657359027997265
+changes in resource availability,3.4657359027997265
+basic operating systems services,3.4657359027997265
+availability of spare processors,3.4657359027997265
+auction models present drawbacks,3.4657359027997265
+appropriate software adjustments,3.4657359027997265
+addressable ip frontend machines,3.4657359027997265
+interaction with output displays,3.4657359027997265
+distributed loadbalancing policy,3.4657359027997265
+contextual information intrinsic,3.4657359027997265
+effect of processor reallocation,3.4657359027997265
+government research laboratories,3.4657359027997265
+effective partitioning decisions,3.4657359027997265
+informationoriented applications,3.4657359027997265
+inevitability of idle processors,3.4657359027997265
+increase in simultaneous service,3.4657359027997265
+implications for protocol design,3.4657359027997265
+high energy physics applications,3.4657359027997265
+hierarchical resource management,3.4657359027997265
+heterogeneous resource ensembles,3.4657359027997265
+intensive computing requirements,3.4657359027997265
+flexible application composition,3.4657359027997265
+face of heavy network contention,3.4657359027997265
+execution timeefficiency profile,3.4657359027997265
+examples of such characteristics,3.4657359027997265
+ethernet local computer networks,3.4657359027997265
+efficient computational analysis,3.4657359027997265
+efficient communication hardware,3.4657359027997265
+networkapplication requirements,3.4339872044851463
+processorsharing central server,3.4339872044851463
+processors in multiple clusters,3.4339872044851463
+power through parallelism andor,3.4339872044851463
+potential for unstable behavior,3.4339872044851463
+other contemporary technologies,3.4339872044851463
+objectoriented grid application,3.4339872044851463
+number of computer applications,3.4339872044851463
+new minicomputer multiprocessor,3.4339872044851463
+metacomputing directory service,3.4339872044851463
+network transparent data access,3.4339872044851463
+multiple manmachine interaction,3.4339872044851463
+motives for parallel processing,3.4339872044851463
+programs onto idle workstations,3.4339872044851463
+measurements of line efficiency,3.4339872044851463
+many grid application scenarios,3.4339872044851463
+management of storage resources,3.4339872044851463
+largescale scientific computing,3.4339872044851463
+jobs with high resource demands,3.4339872044851463
+program air traffic simulations,3.4339872044851463
+various grid service components,3.4339872044851463
+properly interlocked operations,3.4339872044851463
+realization of endtoend quality,3.4339872044851463
+individual job processing rates,3.4339872044851463
+unet communication architecture,3.4339872044851463
+twofold performance improvement,3.4339872044851463
+system with dedicated languages,3.4339872044851463
+system of diskless workstations,3.4339872044851463
+standard web services interface,3.4339872044851463
+singlecopy communications layer,3.4339872044851463
+simple twolevel queueing policy,3.4339872044851463
+simple communications protocols,3.4339872044851463
+significant performance penalty,3.4339872044851463
+set of available grid resources,3.4339872044851463
+sequent symmetry multiprocessor,3.4339872044851463
+secure efficient data transport,3.4339872044851463
+resourcebrokering functionality,3.4339872044851463
+research in parallel processing,3.4339872044851463
+requirements of grid accounting,3.4339872044851463
+reduction in processing latency,3.4339872044851463
+intrinsic location independence,3.4339872044851463
+computer system research issues,3.4339872044851463
+highspeed communication devices,3.4339872044851463
+distributed molecular modelling,3.4339872044851463
+ctss at massachusetts institute,3.4339872044851463
+creation of virtual enterprises,3.4339872044851463
+corresponding optimal schedules,3.4339872044851463
+context of rapid network growth,3.4339872044851463
+connection between web services,3.4339872044851463
+concrete workflow generator cwg,3.4339872044851463
+computer communications network,3.4339872044851463
+combination of systemparameters,3.4339872044851463
+clean flexible system structure,3.4339872044851463
+behavior of mathematical models,3.4339872044851463
+asynchronous parallel computers,3.4339872044851463
+approximate iterative technique,3.4339872044851463
+application metadata attributes,3.4339872044851463
+apples parameter sweep template,3.4339872044851463
+allocation of cluster resources,3.4339872044851463
+highperformance microprocessors,3.4339872044851463
+additional higherlevel services,3.4339872044851463
+decisions for remote processing,3.4339872044851463
+complexity of auction protocols,3.4339872044851463
+distributed systems integration,3.4339872044851463
+expensive single supercomputers,3.4339872044851463
+highperformance implementations,3.4339872044851463
+highend computational resources,3.4339872044851463
+dynamic peer arrivalsdepartures,3.4339872044851463
+high throughput genome analysis,3.4339872044851463
+gravitational physics workflows,3.4339872044851463
+globus toolkit allow scientists,3.4339872044851463
+future e science infrastructure,3.4339872044851463
+forecasting network performance,3.4339872044851463
+experimental timesharing system,3.4339872044851463
+generalpurpose computer utility,3.4339872044851463
+effects of different parameters,3.4339872044851463
+equilibrium state probabilities,3.4339872044851463
+equality of resource allocation,3.4339872044851463
+enable regular sockets programs,3.4339872044851463
+effects of increased contention,3.4339872044851463
+ethernet communications network,3.4339872044851463
+dynamic soft realtime scheduler,3.4339872044851463
+trading,3.405342760846798
+resources across organizations,3.4011973816621555
+resource management challenges,3.4011973816621555
+resource scheduling algorithms,3.4011973816621555
+resourceintensive applications,3.4011973816621555
+serviceoriented grid computing,3.4011973816621555
+scalable virtual organizations,3.4011973816621555
+service provider relationships,3.4011973816621555
+purpose of remotely monitoring,3.4011973816621555
+several administrative domains,3.4011973816621555
+resource fragmentation effects,3.4011973816621555
+number of available processors,3.4011973816621555
+priority scheduling procedures,3.4011973816621555
+performance of various aspects,3.4011973816621555
+performance of modern networks,3.4011973816621555
+parallel processable  subtasks,3.4011973816621555
+parallel multicomputer systems,3.4011973816621555
+parallel application workloads,3.4011973816621555
+number of dissimilar computers,3.4011973816621555
+several interesting approaches,3.4011973816621555
+new messagepassingarchitecture,3.4011973816621555
+several different applications,3.4011973816621555

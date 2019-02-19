@@ -194,11 +194,12 @@ def main():
 
     random.seed()
     for dat in csvreader:
-        docId = dat[0]
-        currentLevelQueue.put(str(docId))
+        if random.random() < subsampleFraction :
+            docId = dat[0]
+            currentLevelQueue.put(str(docId))
         
     csvInputFile.close();
-    # print "currentLevelQueue.qsize=",currentLevelQueue.qsize()
+    print "seed size=",currentLevelQueue.qsize()
     # return
 
     # fill-in the zero level with seed enties

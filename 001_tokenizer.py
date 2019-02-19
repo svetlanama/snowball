@@ -12,6 +12,7 @@ import re
 from nltk.stem.porter import *
 from nltk.corpus import stopwords
 import json
+import os.path
 
 import topicmodel
 
@@ -71,12 +72,14 @@ def main():
     writer.writeheader()
 
     for i in xrange(0, len(csvInputFileList)):
-
-
+        
         path =csvInputFileList[i]
         print ("path", path)
-        csvInputFile = open(path, 'r')
-        csvreader = csv.reader(csvInputFile, delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
+        if not os.path.isfile(path):
+            continue
+
+        csvInputFile = open(path, 'rb')
+        csvreader = csv.reader( (x.replace('\0', '') for x in csvInputFile), delimiter="\t", quotechar='', quoting=csv.QUOTE_NONE)
         for dat in csvreader:
             # paper Id
             try:

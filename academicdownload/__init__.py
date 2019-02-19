@@ -26,8 +26,15 @@ class Entry:
         
     def clear(self, x):
         return re.sub(r"\\t|\\n|\\r", "", x)
+    '''
+    names of columns returned by self.toList()
+    '''
+    @staticmethod 
+    def columns():
+        return ['entryId','entryTitle','entryURL','entryPublished','entryAbstract','authors','topics','referencesTo','referencedBy','ECC']
     
-    def toCsv(self):
+    
+    def toList(self):
         sb = [];
         sb.append(self.clear(str(self.entryId)).encode('utf-8'))        # 0
         sb.append(self.clear(self.entryTitle).encode('utf-8'))          # 1
@@ -47,7 +54,10 @@ class Entry:
             sb.append("")                                               # 8 list of backrefereces
 
         sb.append(str(self.ECC))
-        return "\t".join(sb)
+        return sb
+        
+    def toCsv(self):
+        return "\t".join(self.toList())
 '''
 
 

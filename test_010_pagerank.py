@@ -2,8 +2,7 @@
 #encoding: UTF-8
 
 # select nodes using PageRank score
-# appropriate for latest publication reading
-# and historical perspective
+# appropriate for introductory reading plan
 
 # networkx 2.0!!!!
 import ConfigParser
@@ -170,132 +169,46 @@ def main():
     print " number of cycles=", len(cycles)
     #return
     
-    # get list of all nodes
-    n_minus = {}
-    n_plus = {}
-    for nd in citation_net.nodes():
-        n_minus[nd] = -1
-        n_plus[nd] = -1
-        
-    
-    # calculate n_minus[node]
-    n_minus['s'] = 1
-    n_updates = 1
-    while n_updates > 0:
-        n_updates = 0
-        for nd in n_minus:
-            if n_minus[nd] < 0:
-                in_edges = [n_minus[ed] for (ed, _) in list(citation_net.in_edges([nd]))]
-                # print "in_edges=", nd, [ed for (ed, _) in list(citation_net.in_edges([nd]))]
-                if in_edges and min(in_edges) > 0:
-                    # print "updated\n\n"
-                    #print "in_edges=", nd, in_edges
-                    n_updates += 1
-                    n_minus[nd] = sum(in_edges)
-        print "n_updates=", n_updates
+    # calculate PageRank values
+    print "calculate PageRank values ..."
 
-                    
-    #print  "n_minus=", n_minus
-    # return
-    
-    # calculate n_plus[node]
-    n_plus['t'] = 1
-    n_updates = 1
-    while n_updates > 0:
-        n_updates = 0
-        for nd in n_plus:
-            if n_plus[nd] < 0:
-                out_edges = [n_plus[ed] for (_, ed) in list(citation_net.out_edges([nd]))]
-                #print "out_edges=", nd, [ed for (ed, _) in list(citation_net.out_edges([nd]))]
-                if out_edges and  min(out_edges) > 0:
-                    #print "updated\n\n"
-                    n_updates += 1
-                    n_plus[nd] = sum(out_edges)
-        print "n_updates=", n_updates
-    #print  "n_plus=", n_plus
-    #print list(citation_net.out_edges(['s']))
-    
-    citation_net_flow = float(n_plus['s'] * n_minus['t'])
-    print "citation_net_flow=", citation_net_flow
-    
-    
-    
-    for nd in n_plus:
-        if n_plus[nd] < 0 or n_minus[nd] < 0:
-            citation_net.remove_node(nd)
-    
-    #print "n_nodes=", len(citation_net.nodes())
-    print "edges=", citation_net.edges()
-    print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
-    
-    # calculate edge weights
-    all_edges = citation_net.edges()
-    edge_weights = []
-    for ed in all_edges:
-        evg = (ed[0], ed[1], n_minus[ed[0]] * n_plus[ed[1]])
-        #print evg    
-        edge_weights.append(evg)
-    
-    sorted_edge_weights = sorted(edge_weights, cmp=lambda x, y: (1 if y[2]>x[2] else -1) )
-    #print edge_weights
-    
-    wmin = sorted_edge_weights[n_top_paths][2]
-    selected_edges = [ed for ed in sorted_edge_weights if ed[2] >= wmin]
-    print "wmin=", wmin, " len(selected_edges)=", len(selected_edges), selected_edges
+    node_ids = nx.pagerank(citation_net)
 
+    print "done"
     
-    node_ids = {}
-    for ed in selected_edges:
-        if ed[0] not in node_ids:
-            node_ids[ed[0]] = 0
-            
-        if node_ids[ed[0]] < ed[2]:
-            node_ids[ed[0]] = ed[2]
-            
-        if ed[1] not in node_ids:
-            node_ids[ed[1]] = 0
-            
-        if node_ids[ed[1]] < ed[2]:
-            node_ids[ed[1]] = ed[2]
+    # select the most valuable nodes
+    sorted_node_weights = sorted(node_ids.values() )
+    wmin = sorted_node_weights[n_top_paths]
+    for nid in node_ids.keys():
+        if node_ids[nid]<wmin:
+            del node_ids[nid]
 
+    print "wmin=", wmin, " len(node_ids)=", len(node_ids), node_ids
+    
     max_weight = float(max(node_ids.values()))
+
     for nd in node_ids:
         node_ids[nd] = node_ids[nd] / max_weight
 
     selected_nodes = pd.DataFrame([(nd, node_ids[nd]) for nd in node_ids], columns=['entryId', 'entryWeight'])
     selected_nodes['entryId'] = selected_nodes['entryId'].map(lambda x: int(str(x)) if str(x).isdigit() else None )
 
-
     snds = pd.merge(dfn0[['entryId', 'dist', 'year', 'url', 'text']], selected_nodes, how='inner', left_on='entryId', right_on='entryId')
     print snds
 
-    fname=dataDir + '/out-citation-network-reading-plan-'+str(n_top_paths)+'-of-'+str(max_citation_net_nodes)+'-by-spc.csv'
+    fname=dataDir + '/out-citation-network-reading-plan-'+str(n_top_paths)+'-of-'+str(max_citation_net_nodes)+'-by-pagerank.csv'
     snds.to_csv(fname, sep="\t", quoting=csv.QUOTE_NONNUMERIC)
     
     print "Output is written to " + fname
     
+    ## create reduced network for visualisation
+    # reduced_citation_net = nx.DiGraph()
+    # for ed in selected_edges:
+    #    reduced_citation_net.add_edge(ed[0], ed[1], weight=ed[2])
     
-    # creeate reduced network for visualisation
-    reduced_citation_net = nx.DiGraph()
-    for ed in selected_edges:
-        reduced_citation_net.add_edge(ed[0], ed[1], weight=ed[2])
+    # nx.write_weighted_edgelist(reduced_citation_net, dataDir + "/out-citation-network-reduced.edgelist")
     
-    #for ed in reduced_citation_net.edges(data=True):
-    #    print 'ed=', ed
-        
-    nx.write_weighted_edgelist(reduced_citation_net, dataDir + "/out-citation-network-reduced.edgelist")
-    
-    print "Reduced network is written to " + dataDir + '/out-citation-network-reduced.edgelist'
-    
-    
-    
-    
-    # main path analysis
-    edge_distances={}
-    for ed in edge_weights:
-        edge_distances[(ed[0], ed[1])]=1.0/ed[2]
-
-    print(nx.astar_path(citation_net,'s','t',lambda x,y: edge_distances[(x, y)] ))
+    # print "Reduced network is written to " + dataDir + '/out-citation-network-reduced.edgelist'
     return
 
 

@@ -18,5 +18,5 @@ Quick start:
 * 005_reduced_joint_probabilities.py
 * 007_SSNMF.py
 * 008_show_topic_coherence.py
-* 009_restricted_snowball.py or 009_restricted_snowball_random_subsample.py
+* 009_restricted_snowball.py
 * 010_search_path_count.py
