@@ -599,10 +599,16 @@ def downloadLevel(dataDir, subscriptionKey, level, files, restEndpoint, verbose=
 
             ids = []
 
+        if requestCounter % 50 == 0:
+            # save results every 50 calls
+            api.saveList(outInvalidFile, msAcademicInvalidIds)
+            api.saveEntries(outEntriesFile, msAcademicEntries);
+            api.saveList(outNextQueueFile, msAcademicQueueUpdate);
+            print("saving intermediate results ...")
+
         counter = counter + 1
 
-
-    # save results
+    # save final results
     api.saveList(outInvalidFile, msAcademicInvalidIds)
 
     api.saveEntries(outEntriesFile, msAcademicEntries);

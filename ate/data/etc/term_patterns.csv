@@ -1,3 +1,0 @@
-Noun+Noun
-( Adj | Noun ) + Noun
-((Adj | Noun ) + | (( Adj | Noun )* ( Noun Prep ) ? )( Adj | Noun )* ) Noun
