@@ -11,26 +11,26 @@ import csv
 
 def main():
 
-    
+
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
-    
-    dataDir = config.get('main', 'dataDir')    
+
+    dataDir = config.get('main', 'dataDir')
     n_top_paths = config.getint('main', 'n_top_paths');
 
-    
-    
+
+
     dfn0 = pd.read_csv(dataDir + '/out-citation-network.csv',sep="\t")
     #print dfn0[['entryId','dist','year','url','text']].head()
 
     dfn=dfn0[['entryId','referencedBy','referencesTo']]
-    
+
     entries=list(dfn['entryId'])
     #print type(entries[0])
-    
+
     citation_net=nx.DiGraph()
-    
+
     for i in dfn.index:
         row=dfn.loc[i]
         node_1=row.loc['entryId']
@@ -54,7 +54,7 @@ def main():
     nx.write_edgelist(citation_net, dataDir + "/tmp-citation-network.edgelist")
 
     t0 = time.time()
-    
+
     # get nodes having zero in_degree and connect them to source node (id=s)
     s_nodes = citation_net.in_degree()
     for nd in list(s_nodes):
@@ -66,7 +66,7 @@ def main():
     for nd in list(t_nodes):
         if nd[1] == 0:
             citation_net.add_edge(nd[0], 't')
-    
+
     print "1 source and target added", (time.time()-t0)
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
     paths = list(nx.all_simple_paths(citation_net, source='s', target='t'))
@@ -101,7 +101,7 @@ def main():
         weighted_paths.append(item)
 
     print "5 path weights - done", (time.time()-t0)
-    
+
     sorted_weighted_paths = sorted(weighted_paths, key=lambda x: x[0])
     #print 'sorted_weighted_paths=', sorted_weighted_paths[:n_top_paths]
     print "6 sorted_weighted_paths - done", (time.time()-t0)
@@ -110,22 +110,22 @@ def main():
     # show paths having minimal resistance
     path_resistance_threshold=sorted_weighted_paths[n_top_paths][0]
     selected_paths = [x for x in sorted_weighted_paths if x[0]<=path_resistance_threshold]
-    
+
     # compose network in the selected paths
     reduced_citation_net = nx.DiGraph()
     for p in selected_paths:
         path = p[1]
         for i in xrange(1, len(path)):
             reduced_citation_net.add_edge(path[i-1], path[i], attr_dict={'spc':dct[(path[i-1], path[i])]})
-    
+
     reduced_nodes = reduced_citation_net.nodes()
     for nd1 in reduced_nodes:
         for nd2 in reduced_nodes:
             if (nd1, nd2) in dct:
                 reduced_citation_net.add_edge(nd1, nd2, attr_dict={'spc':dct[(nd1, nd2)]})
-    
+
     nx.write_edgelist(reduced_citation_net, dataDir + '/tmp-citation-network-reduced.edgelist')
-    
+
     print reduced_citation_net.nodes()
 
     node_ids=[]
@@ -137,15 +137,16 @@ def main():
             "NaN"
     selected_nodes=pd.DataFrame(pd.Series(node_ids).unique(),columns=['entryId'])
     #print selected_nodes
-    
-    snds=pd.merge(dfn0[['entryId','dist','year','url','text']], selected_nodes, how='inner', left_on='entryId', right_on='entryId' )
-    print snds
 
-    snds.to_csv(dataDir + '/out-citation-network-reading-plan.csv', sep="\t", quoting=csv.QUOTE_NONNUMERIC, )
-    
+    snds=pd.merge(dfn0[['entryId','dist','year','url','text', 'keywords', 'referencedBy', 'title', 'authors', 'affilations']], selected_nodes, how='inner', left_on='entryId', right_on='entryId' )
+
+
+
+    snds.to_csv(dataDir + '/out-citation-network-reading-plan.csv', sep=",", quoting=csv.QUOTE_NONNUMERIC, )
+
     print "Output is written to " + dataDir + '/out-citation-network-reading-plan.csv'
-    
-    return   
+
+    return
 '''
 
 

@@ -1,0 +1,8 @@
+setup.py
+academicdownload/__init__.py
+py_snowball.egg-info/PKG-INFO
+py_snowball.egg-info/SOURCES.txt
+py_snowball.egg-info/dependency_links.txt
+py_snowball.egg-info/requires.txt
+py_snowball.egg-info/top_level.txt
+topicmodel/__init__.py

@@ -18,7 +18,7 @@ import topicmodel
 from nltk.corpus import stopwords
 import academicdownload as ad
 import Queue
- 
+
 
 # map documents to topic using the topic model
 
@@ -58,7 +58,23 @@ def flatten(entry):
             'topics':";".join([ str(t) for t in entry['topics'] ]),
             'ECC':str(entry['ECC']),
             'dist':str(entry['distanceToSeed']),
-            'year':str(entry['year'])
+            'year':str(entry['year']),
+			'title': re.sub(r"\r|\n|\t", " ", entry['title']),
+			'authors':"".join(entry['authors']),
+			'affilations':"".join(entry['affilations'])
+			# 'doi':"".join(entry['doi'])
+
+
+
+			# 'title':str(entry['title']),
+			# 'authors':";".join(entry['authors']),
+			# 'authorAffiliations':";".join(entry['authorAffiliations']),
+			# 'estimatedCitationCount':str(entry['estimatedCitationCount'])
+			# 'pubType':str(entry['pubType'])
+			# doi
+
+
+
     }
 
 
@@ -89,7 +105,7 @@ class LocalTokenizer:
             text = nltk.word_tokenize(string)
         except UnicodeDecodeError:
             text = nltk.word_tokenize(unicode(string, errors='ignore'))
-            
+
         taggedWords = nltk.pos_tag(text)
         words = []
         for tw in taggedWords:
@@ -113,11 +129,11 @@ class LocalTokenizer:
 
 '''
 def main():
-    
+
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
-    
+
     dataDir = config.get('main', 'dataDir')
     maxDistance = config.getfloat('main', 'maxDistance')
     subscriptionKey = config.get('main', 'subscriptionKey');
@@ -136,12 +152,12 @@ def main():
     #regex = re.compile(r"^\d+@", re.IGNORECASE)
 
     io = topicmodel.io(dataDir)
-    
+
     # read wordDictionary
     wordDictionary = io.load_csv_as_dict('out-word-dictionary-reduced.csv')
 
     wwcovarReduced = numpy.load(dataDir + '/tmp-joint-probability-reduced.npy')
-    
+
     topicModel = numpy.load(dataDir + '/out-TopicModel.npy')
     topicModel = topicModel.item()
 
@@ -151,20 +167,20 @@ def main():
 
     # NLP tools:
     tokenizer=LocalTokenizer()
-    
+
     #tokenizer.stemmer = SnowballStemmer("english")
     tokenizer.stemmer=PorterStemmer()
 
     tokenizer.wordDictionary = wordDictionary
-    
+
     tokenizer.validPOSTags = {'NNP':True, 'JJ':True, 'NN':True, 'NNS':True, 'JJS':True, 'JJR':True, 'NNPS':True};
     tokenizer.tester = re.compile('^[a-zA-Z]+$')
     tokenizer.stop = set(stopwords.words('english'))
 
 
-    
 
-    
+
+
     acceptedDocs = set()
     indexedDocs = set()
     seedIds = []
@@ -174,10 +190,10 @@ def main():
 
     # file to write citaton network
     csvOutputFile = open(dataDir + '/out-citation-network.csv', 'w')
-    fieldnames = ['entryId','dist','url','ECC','year','text','keywords','referencesTo','tokens','referencedBy','topics']
+    fieldnames = ['entryId','dist','url','ECC','year','text','keywords','referencesTo','tokens','referencedBy','topics', 'title', 'authors', 'affilations']# 'doi'
     writer = csv.DictWriter(csvOutputFile, fieldnames=fieldnames, delimiter="\t", quotechar='',escapechar="\\", quoting=csv.QUOTE_NONE)
     writer.writeheader()
-    
+
     currentLevelQueue = Queue.Queue()
     # fill in the seed queue
     # read seed docs from CSV file
@@ -194,7 +210,7 @@ def main():
         docId = dat[0]
         #seedIds.append(str(docId))
         currentLevelQueue.put(str(docId))
-        
+
     csvInputFile.close();
     # print seedIds, fullDictionary.keys()
     # return
@@ -237,6 +253,7 @@ def main():
                 # paper text
                 # words=unicode(p.entryTitle + ". "+ p.entryAbstract, errors='ignore')
                 words=p.entryTitle.encode("utf-8") + ". "+ p.entryAbstract.encode("utf-8")
+
                 for tk in tokenizer.tokens(words):
                     tokens.append(tk)
                 # ----- tokenize - end -------------------------------------
@@ -248,14 +265,19 @@ def main():
                     'entryId': p.entryId,
                     'url':p.entryURL,
                     'text': words,
-                    'keywords':";".join([ s.toCSV() for s in p.topics]),
+                    'keywords':";".join([ s.topicName for s in p.topics]),
                     'tokens':tokens,
                     'referencesTo':p.referencesTo,
                     'referencedBy':[],
                     'ECC':p.ECC,
                     'year':p.entryPublished,
                     'topics':topics.tolist(),
-                    'distanceToSeed':0
+                    'distanceToSeed':0,
+					'title': p.entryTitle.encode("utf-8"),
+					'authors':";".join([ a.name for a in p.authors]),
+					'affilations': ";".join([ a.affiliation for a in p.authors])
+					# 'doi': p.entryDOI
+
                 }
                 seedIds.append(str(p.entryId))
 
@@ -277,12 +299,12 @@ def main():
     currentLevelQueue = nextLevelQueue
 
     # iterate over snowball levels
-    for level in xrange(0,3):
+    for level in xrange(0,3): #(0,3) -> (0,1) - faster
         print "============== level ", level
         #maQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
-        
+
         nextLevelQueue = Queue.Queue()
-        
+
         inputIds=[]
         inputRIds=[]
         linkedPublications=[]
@@ -294,21 +316,21 @@ def main():
                inputRIds.append(docId)
             else:
                inputIds.append(docId)
-               
+
             if len(inputRIds)>=80 or currentLevelQueue.empty():
-                
+
                 print 'get publications referencing the indexed ones'
-                
+
                 linkedPublications = api.loadByRIdsExtended(inputRIds, msAcademicIncludeTopicsIds)
                 inputRIds = []
-                
+
                 apiCallCounter = apiCallCounter + 1
                 print "apiCallCounter=", apiCallCounter
 
             if len(inputIds)>=80 or currentLevelQueue.empty():
-                
+
                 print 'get publications referenced with indexed ones'
-                
+
                 linkedPublications = api.loadByIds(inputIds, msAcademicIncludeTopicsIds)
                 inputIds = []
 
@@ -318,7 +340,7 @@ def main():
             if len(linkedPublications)>0:
                 #distances=[]
                 for p in linkedPublications:
-                    
+
                     if not fullDictionary.has_key(str(p.entryId)):
 
                         # tokenize publications
@@ -333,6 +355,7 @@ def main():
 
                         # paper text
                         words=p.entryTitle.encode("utf-8") + ". "+ p.entryAbstract.encode("utf-8")
+
                         [tokens.append(tk) for tk in tokenizer.tokens(words)]
                         # ----- tokenize - end -------------------------------------
 
@@ -345,19 +368,23 @@ def main():
                             if d<distanceToSeed:
                                 distanceToSeed = d
 
-                        # 
+                        #
                         fullDictionary[str(p.entryId)] = {
                             'entryId': p.entryId,
                             'url':p.entryURL,
                             'text': words,
-                            'keywords':";".join([ s.toCSV() for s in p.topics]),
+                            'keywords':";".join([ s.topicName for s in p.topics]),
                             'tokens':tokens,
                             'referencesTo':p.referencesTo,
                             'referencedBy':[],
                             'ECC':p.ECC,
                             'year':p.entryPublished,
                             'topics':topics.tolist(),
-                            'distanceToSeed':distanceToSeed
+                            'distanceToSeed':distanceToSeed,
+							'title':p.entryTitle.encode("utf-8"),
+							'authors':";".join([a.name for a in p.authors]),
+							'affilations': ";".join([ a.affiliation for a in p.authors])
+							# 'doi':p.entryDOI
                         }
                         #distances.append(distanceToSeed)
                         print "indexing: id",p.entryId, " dist=",distanceToSeed, " ECC=",p.ECC," year=",p.entryPublished," title=",p.entryTitle
@@ -375,19 +402,19 @@ def main():
                 #maxDistance = distancesReduced[int(len(distancesReduced) * nSubsamplePercentage)]
                 #print distancesReduced
                 #return
-            
+
                 # append top X% of linked publications to nextLevelQueue if they are not in registry
                 # save top X% of linked publications to file
                 print "maxDistance=", maxDistance
                 for p in linkedPublications:
-                    
+
                     # print "testing ",p.entryId
-                    
+
                     topicIsValid = True
                     for t in p.topics:
                         if  t.topicId in msAcademicExcludeTopicsIds:
                             topicIsValid = false;
-                    
+
                     if topicIsValid and fullDictionary[str(p.entryId)]['distanceToSeed']<=maxDistance and p.entryId not in indexedDocs :
                         # to get referencing publications at next level
                         nextLevelQueue.put(p.entryId)
@@ -407,21 +434,21 @@ def main():
                 print "length-of-nextLevelQueue =", nextLevelQueue.qsize()
 
 
-    
+
         currentLevelQueue=nextLevelQueue
         #print "length of nextLevelQueue =", len(nextLevelQueue)
-    
-    
-    
-    
-    
+
+
+
+
+
 
 
     csvOutputFile.close()
     return
-    
-    
-    
+
+
+
 '''
 
 

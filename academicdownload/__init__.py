@@ -23,37 +23,39 @@ class Entry:
         self.referencedBy = []
         self.level = ''
         self.ECC = 0
-        
+		# self.entryDOI = ''
+
     def clear(self, x):
         return re.sub(r"\\t|\\n|\\r", "", x)
-    
+
     def toCsv(self):
         sb = [];
         sb.append(self.clear(str(self.entryId)).encode('utf-8'))        # 0
         sb.append(self.clear(self.entryTitle).encode('utf-8'))          # 1
         sb.append(self.clear(self.entryURL).encode('utf-8'));           # 2
-        sb.append(self.clear(str(self.entryPublished)).encode('utf-8')) # 3                      
+        sb.append(self.clear(str(self.entryPublished)).encode('utf-8')) # 3
         sb.append(self.clear(self.entryAbstract).encode('utf-8'))       # 4
-        
+
         sb.append(";".join([a.toCSV() for a in self.authors]))          # 5 list of authors
-        
+
         sb.append(";".join([a.toCSV() for a in self.topics]))           # 6 list of topics
 
         sb.append(";".join([str(a) for a in self.referencesTo]))        # 7 list of refereces
-        
+
         if len(self.referencedBy) > 0:
             sb.append(";".join([str(a) for a in self.referencedBy]))    # 8 list of backrefereces
         else:
             sb.append("")                                               # 8 list of backrefereces
 
         sb.append(str(self.ECC))
+	    # sb.append(self.clear(self.entryDOI).encode('utf-8'));   		# 10  doi
         return "\t".join(sb)
 '''
 
 
 
 
-'''        
+'''
 def entryFromCsv(csv):
 
     if (not isinstance(csv, str) or len(csv) == 0):
@@ -73,7 +75,7 @@ def entryFromCsv(csv):
         en.referencesTo = cols[7].split(";")
     else:
         en.referencesTo = []
-    
+
 
     if (len(cols) > 8):
         en.referencedBy = cols[8].split(";")
@@ -85,7 +87,7 @@ def entryFromCsv(csv):
     else:
         en.ECC = 0
 
-    
+	# en.entryDOI = cols[10]
 
     return en
 
@@ -99,7 +101,7 @@ def entryFromCsv(csv):
 
 
 
-'''        
+'''
 class Author:
     def __init__(self):
         self.id = ''
@@ -123,7 +125,7 @@ class Author:
 
 
 
-'''        
+'''
 def authorListFromCsv(csvList):
     lst = []
     for csv in csvList:
@@ -137,10 +139,10 @@ def authorListFromCsv(csvList):
 
 
 
-'''        
+'''
 def authorFromCsv(csv):
     au = Author()
-    
+
     parts = csv.split("@");
     # print parts
     # return
@@ -163,7 +165,7 @@ def authorFromCsv(csv):
 
 
 
-'''        
+'''
 class Topic:
 
     def __init__(self):
@@ -183,7 +185,7 @@ class Topic:
 
 
 
-'''        
+'''
 def topicListFromCsv(csvList):
     lst = []
     for csv in csvList:
@@ -196,7 +198,7 @@ def topicListFromCsv(csvList):
 
 
 
-'''        
+'''
 def topicListFromCsv(csv):
     to = Topic()
     parts = csv.split("@");
@@ -212,22 +214,22 @@ def topicListFromCsv(csv):
 
 
 
-'''        
+'''
 class Api:
-    
+
     def __init__(self, subscriptionKey):
         self.subscriptionKey = subscriptionKey
-    
+
     '''
 
-    
-    
-    
-    
+
+
+
+
     '''
     def loadList(self, f):
         q = []
-        
+
         #out-invalid.csv
         if os.path.isfile(f) :
             thefile = open(f, 'r')
@@ -237,16 +239,16 @@ class Api:
             a = data.split("\n")
             for row in a:
                 rw = row.strip(" \n\t")
-                if len(rw) > 0:    
+                if len(rw) > 0:
                     tmp = rw.split("#")
                     q.append(tmp[0])
         return q
     '''
 
-    
-    
-    
-    
+
+
+
+
     '''
     def loadEntries(self, f):
         q = []
@@ -262,9 +264,9 @@ class Api:
 
     '''
 
-    
-    
-    
+
+
+
     '''
     def loadByIds(self, entryIds, msAcademicIncludeTopicsIds):
         regex = re.compile(r"\\D", re.IGNORECASE)
@@ -272,13 +274,13 @@ class Api:
         sbFIds = "or(" + (",".join(["Composite(F.FId=" + regex.sub('', str(id)) + ")" for id in msAcademicIncludeTopicsIds])) + ")"
         res = self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC')
         #,E
-        return res 
+        return res
     '''
 
-    
-    
-    
-    
+
+
+
+
     '''
     def loadByRIds(self, entryIds, msAcademicIncludeTopicsIds):
         regex = re.compile(r"\\D", re.IGNORECASE)
@@ -287,10 +289,10 @@ class Api:
         return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y')
     '''
 
-    
-    
-    
-    
+
+
+
+
     '''
     def loadByRIdsExtended(self, entryIds, msAcademicIncludeTopicsIds):
         regex = re.compile(r"\\D", re.IGNORECASE)
@@ -299,10 +301,10 @@ class Api:
         return self.callApi("and(" + sbIds + ", " + sbFIds + ")", 'Id,Ti,Y,RId,F.FN,F.FN,F.FId,AA.AuId,AA.AuN,AA.AfN,AA.AfId,E,ECC')
     '''
 
-    
-    
-    
-    
+
+
+
+
     '''
     def callApi(self, expr, attributes):
         res = []
@@ -323,19 +325,20 @@ class Api:
                                   'attributes':attributes
                                   })
         # print params
-        
+
         try:
             # print(params)
             # https://                      westus.api.cognitive.microsoft.com
-            conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
+            #api.labs.cognitive.microsoft.com
+            conn = httplib.HTTPSConnection('api.labs.cognitive.microsoft.com')
             conn.request("GET", "/academic/v1.0/evaluate?" + params, "", headers)
             response = conn.getresponse()
             # print response
             jsonString = response.read()
-            #print jsonString
+            print jsonString
             data = json.loads(jsonString)
             #print(data['entities'])
-            
+
             for entity in data['entities']:
                 en = self.loadEntity(entity)
                 res.append(en)
@@ -350,7 +353,7 @@ class Api:
 
 
 
-    ''' 
+    '''
     def loadEntity(self, entity):
         res = Entry();
         #"entities":
@@ -393,7 +396,7 @@ class Api:
                     for pos in InvertedIndex[word]:
                         W[pos] = word
                 res.entryAbstract = regex.sub(" "," ".join(W))
-    
+
         if entity.has_key("Y"):
             res.entryPublished = entity["Y"]
         else:
@@ -410,17 +413,17 @@ class Api:
                 a = Author()
                 a.id = author["AuId"]
                 a.name = author["AuN"]
-                
+
                 if author.has_key("AfN"):
                     a.affiliation = author["AfN"]
                 else:
                     a.affiliation = ""
-            
+
                 if author.has_key("AfId"):
                     a.affiliationId = author["AfId"]
                 else:
                     a.affiliationId = ""
-                    
+
                 res.authors.append(a)
 
 
@@ -431,7 +434,7 @@ class Api:
                 t.topicId = topic["FId"]
                 t.topicName = topic["FN"]
                 res.topics.append(t)
-            
+
 
         res.referencesTo = []
         if entity.has_key("RId"):
@@ -443,7 +446,7 @@ class Api:
 
 
 
-    ''' 
+    '''
     def saveList(self, file, ids):
         thefile = open(file, 'w')
         thefile.write("\n".join([str(i) for i in ids]))
@@ -452,7 +455,7 @@ class Api:
 
 
 
-    ''' 
+    '''
     def saveEntries(self, file, entries):
         thefile = open(file, 'w')
         for entry in entries:
@@ -464,7 +467,7 @@ class Api:
 
 
 
-'''        
+'''
 def downloadLevel(dataDir, subscriptionKey, level, files):
 
     #outQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
@@ -558,7 +561,7 @@ def downloadLevel(dataDir, subscriptionKey, level, files):
 
 
                 print str(counter) + " of " + str(len(msAcademicQueue)) + " : " + str(en.entryId) + "  " + str(en.entryPublished) + "  ", en.entryTitle.encode('utf-8')
-            
+
             for tid in allIds:
                 msAcademicInvalidIds.add(tid);
 
@@ -601,5 +604,4 @@ def downloadLevel(dataDir, subscriptionKey, level, files):
 
 
 
-'''        
-  
+'''
