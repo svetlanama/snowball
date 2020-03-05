@@ -298,7 +298,7 @@ def main():
     logMessages = []
 
     # iterate over snowball levels
-    for level in xrange(0, 20):
+    for level in xrange(0, 3): #20
         print "============== level ", level
         # maQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
 

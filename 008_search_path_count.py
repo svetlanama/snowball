@@ -200,7 +200,7 @@ def spc(citation_net):
     for nd in node_weighs:
         node_weighs[nd] = node_weighs[nd] / max_weight
     return {
-        'node_weighs':node_weighs,
+        'node_weights':node_weighs,
         'edge_weights':edge_weights
     }
 
