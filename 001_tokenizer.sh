@@ -1,2 +1,2 @@
 #!/bin/sh
-pipenv run python 001_tokenized.py
+pipenv run python 001_tokenizer.py
