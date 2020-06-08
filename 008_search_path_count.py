@@ -284,7 +284,7 @@ def main():
 
     sorted_weights = sorted(node_ids.values(), cmp=lambda x, y: (1 if y>x else -1) )
     print(" len sorted_weights=", len(sorted_weights))
-    print(" len n_top_paths=", n_top_paths))
+    print(" len n_top_paths=", n_top_paths)
     wmin = sorted_weights[n_top_paths]
     print "wmin=", wmin
     selected_nodes = pd.DataFrame([(nd, node_ids[nd]) for nd in node_ids if node_ids[nd]>= wmin ], columns=['entryId', 'entryWeight'])
