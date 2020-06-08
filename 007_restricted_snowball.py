@@ -298,7 +298,7 @@ def main():
     logMessages = []
 
     # iterate over snowball levels
-    for level in xrange(0, 3): #20
+    for level in xrange(0, 20): #3 test 
         print "============== level ", level
         # maQueueFile = dataDir + "/ms-academic-queue-" + str(level) + ".csv"
 
@@ -364,7 +364,7 @@ def main():
                             if d < distanceToSeed:
                                 distanceToSeed = d
 
-                        # 
+                        #
                         fullDictionary[str(p.entryId)] = {
                             'entryId': p.entryId,
                             'url': p.entryURL,
