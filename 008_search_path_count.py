@@ -207,27 +207,27 @@ def spc(citation_net):
 
 def main():
 
-    
+
     # read configuration file
     config = ConfigParser.ConfigParser()
     config.readfp(open('config.ini'))
-    
-    dataDir = config.get('main', 'dataDir')   
+
+    dataDir = config.get('main', 'dataDir')
     #dataDir = './data'
     n_top_paths = config.getint('main', 'n_top_paths');
-    
+
     max_citation_net_nodes = config.getint('main', 'max_citation_net_nodes');
 
     dfn0 = pd.read_csv(dataDir + '/out-citation-network.csv', sep="\t")
     #print dfn0[['entryId','dist','year','url','text']].head()
 
     dfn = dfn0[['entryId', 'referencedBy', 'referencesTo']].head(max_citation_net_nodes)
-    
+
     entries = list(dfn['entryId'])
     #print type(entries[0])
-    
+
     citation_net = nx.DiGraph()
-    
+
     for i in dfn.index:
         row = dfn.loc[i]
         node_1 = row.loc['entryId']
@@ -250,13 +250,13 @@ def main():
     print len(citation_net.nodes())
     nx.write_edgelist(citation_net, dataDir + "/tmp-citation-network.edgelist")
 
-    
+
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
 
     remove_cycles(citation_net)
     print("decycled network is connected = ", nx.is_connected(citation_net.to_undirected()))
     #return
-    
+
     s_nodes = list(citation_net.nodes())
     for nd in list(s_nodes):
         # print "node ", nd
@@ -264,7 +264,7 @@ def main():
         if len(citation_net.in_edges(nbunch=[nd])) == 0:
             # print "add edge s->", nd
             citation_net.add_edge('s', nd)
-            
+
         # get nodes having zero out_degree and connect them to target node (id=t)
         if len(citation_net.out_edges(nbunch=[nd])) == 0:
             # print "add edge ", nd, "->t"
@@ -273,7 +273,7 @@ def main():
 
     print "1 source and target added", (time.time()-t0)
     print("network is connected = ", nx.is_connected(citation_net.to_undirected()))
-    
+
     cycles = list(nx.simple_cycles(citation_net))
     print " number of cycles=", len(cycles)
     #return
@@ -283,11 +283,13 @@ def main():
     node_ids = spc_result['node_weights']
 
     sorted_weights = sorted(node_ids.values(), cmp=lambda x, y: (1 if y>x else -1) )
+    print(" len sorted_weights=", len(sorted_weights))
+    print(" len n_top_paths=", n_top_paths))
     wmin = sorted_weights[n_top_paths]
     print "wmin=", wmin
     selected_nodes = pd.DataFrame([(nd, node_ids[nd]) for nd in node_ids if node_ids[nd]>= wmin ], columns=['entryId', 'entryWeight'])
     #selected_nodes['entryId'] = selected_nodes['entryId'].map(lambda x: int(str(x)) if str(x).isdigit() else None )
-    
+
     # main path analysis
     edge_distances = {}
     for ed in edge_weights:
@@ -302,14 +304,14 @@ def main():
         path_1.extend(path_2[1:])
         reading_plan.update(path_1)
         print (path_1)
-    
+
     print('reading_plan')
     print(reading_plan)
     print('main path')
     print(nx.astar_path(citation_net,'s','t', distance_measure))
-    
-    
-    
+
+
+
     selected_nodes = pd.DataFrame([(nd, node_ids[nd]) for nd in node_ids if nd in reading_plan], columns=['entryId', 'entryWeight'])
     selected_nodes['entryId'] = selected_nodes['entryId'].map(lambda x: int(str(x)) if str(x).isdigit() else None )
 
@@ -317,24 +319,24 @@ def main():
     print snds
     fname=dataDir + '/out-citation-network-reading-plan-'+str(n_top_paths)+'-of-'+str(max_citation_net_nodes)+'-by-spc.csv'
     snds.to_csv(fname, sep="\t", quoting=csv.QUOTE_NONNUMERIC)
-    
+
     print "Output is written to " + fname
-    
-    
+
+
     #    # create reduced network for visualisation
     #    reduced_citation_net = nx.DiGraph()
     #    for ed in selected_edges:
     #        reduced_citation_net.add_edge(ed[0], ed[1], weight=ed[2])
-    #    
+    #
     #    #for ed in reduced_citation_net.edges(data=True):
     #    #    print 'ed=', ed
-    #        
+    #
     #    nx.write_weighted_edgelist(reduced_citation_net, dataDir + "/out-citation-network-reduced.edgelist")
-    #    
+    #
     #    print "Reduced network is written to " + dataDir + '/out-citation-network-reduced.edgelist'
     #
 
-        
+
 '''
 
 
